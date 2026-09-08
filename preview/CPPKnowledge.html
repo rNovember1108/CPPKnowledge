@@ -3122,16 +3122,16 @@ auto val = get&lt;static_cast&lt;int&gt;(info::address)&gt;(a);
 <h2 id="-">引言</h2>
 <p>容器（Container）是一种特殊的数据结构，用来组织和存储数据。C++ 标准库提供了多种类型的容器，每种容器都有其特定的数据组织方式和操作方式。以下是 C++ 中最常用的容器：</p>
 <ol>
-<li><strong><code>vector</code></strong>：动态数组，可以在尾部进行高效的插入和删除操作，也可以随机访问</li>
-<li><strong><code>list</code></strong>：双向链表，可以在任何位置进行高效的插入和删除操作。</li>
-<li><strong><code>deque</code></strong>：双端队列，可以在头部和尾部进行高效的插入和删除操作。</li>
-<li><strong><code>set/multiset</code></strong>：基于红黑树的有序集合。<code>set</code> 中的元素按照特定的顺序排列，且每个元素只出现一次。<code>multiset</code> 则允许元素重复。</li>
-<li><strong><code>map/multimap</code></strong>：基于红黑树的有序键值对，<code>map</code> 中的每个键只出现一次，<code>multimap</code> 则允许键重复。</li>
-<li><strong><code>unordered set/unordered multiset</code></strong>：基于哈希表的无序集合。<code>unordered set</code> 中的每个元素只出现一次，<code>unordered multiset</code> 则允许元素重复。</li>
-<li><strong><code>unordered map/unordered multimap</code></strong>：基于哈希表的无序键值对，<code>unordered map</code> 中的每个键只出现一次，`unordered multimap 则允许键重复。</li>
-<li><strong><code>stack</code></strong>：栈，后进先出（LIFO）的数据结构。</li>
-<li><strong><code>queue</code></strong>：队列，先进先出（FIFO）的数据结构。</li>
-<li><strong><code>priority queue</code></strong>：优先队列，内部元素按照优先级进行排序。</li>
+<li><code>vector</code>：动态数组形式也是最常用的‌序列式容器‌，可以在尾部进行高效的插入和删除操作，也可以随机访问；</li>
+<li><code>list</code>：基于‌双向链表实现的序列式容器，可以在常数时间内完成任意位置的插入和删除操作；</li>
+<li><code>deque</code>：基于‌双端队列实现的序列式容器，可以在头部和尾部进行高效的插入和删除操作；</li>
+<li><code>set/multiset</code>：基于红黑树的有序集合的关联式容器，<code>set</code> 存储‌唯一‌的元素，<code>multiset</code> 则允许存储‌重复‌的元素。</li>
+<li><code>map/multimap</code>：基于红黑树的有序键值对集合的关联式容器，<code>map</code> 中每个键（Key）在容器中必须是‌唯一‌的，<code>multimap</code> 则允许‌多个元素拥有相同的键。</li>
+<li><code>unordered_set/unordered_multiset</code>：基于哈希表的无序集合的无序关联容器。<code>unordered_set</code> 存储‌唯一‌的元素，<code>unordered_multiset</code> 则允许存储‌重复‌的元素。</li>
+<li><code>unordered_map/unordered_multimap</code>：基于哈希表的无序键值对集合的无序关联容器，<code>unordered_map</code> 每个键（Key）在容器中必须是‌唯一‌的，<code>unordered_multimap</code> 则允许‌多个元素拥有相同的键。</li>
+<li><code>stack</code>：栈，容器适配器‌，后进先出（LIFO）的数据结构。</li>
+<li><code>queue</code>：队列，容器适配器‌，先进先出（FIFO）的数据结构。</li>
+<li><code>priority_queue</code>：优先队列，容器适配器，最大堆‌（Max-Heap）结构，确保每次访问的都是当前优先级最高（默认情况下是值最大）的元素。</li>
 </ol>
 <h2 id="-">顺序容器和关联容器</h2>
 <p><strong>顺序容器（Sequence Containers）</strong></p>
@@ -3147,78 +3147,54 @@ auto val = get&lt;static_cast&lt;int&gt;(info::address)&gt;(a);
 <ul>
 <li><code>std::set</code>：有序集合，存储唯一的元素。</li>
 <li><code>std::multiset</code>：有序集合，允许存储重复的元素。</li>
-<li><code>std::map</code>：有序映射，存储键值对，每个键唯一。</li>
-<li><code>std::multimap</code>：有序映射，允许存储重复的键值对。</li>
+<li><code>std::map</code>：有序键值对集合，存储键值对，每个键唯一。</li>
+<li><code>std::multimap</code>：有序键值对集合，允许存储重复的键值对。</li>
 <li><code>std::unordered_set</code>：无序集合，存储唯一的元素。</li>
 <li><code>std::unordered_multiset</code>：无序集合，允许存储重复的元素。</li>
-<li><code>std::unordered_map</code>：无序映射，存储键值对，每个键唯一。</li>
-<li><code>std::unordered_multimap</code>：无序映射，允许存储重复的键值对。</li>
+<li><code>std::unordered_map</code>：无序键值对集合，每个键唯一。</li>
+<li><code>std::unordered_multimap</code>：无序键值对集合，允许存储重复的键值对。</li>
 </ul>
-<p>除了上述容器，在 C++11 中还引入了一些辅助容器类模板，如 <code>std::queue</code>、<code>std::stack</code>、<code>std::priority_queue</code>，它们是基于顺序容器和适配器设计的。</p>
-<p><strong>顺序容器适用于需要按照元素插入的顺序进行访问的情况，而关联容器适用于需要根据键值进行查找和排序的情况。</strong></p>
-<h2 id="-">容器迭代器失效</h2>
-<p>常见容器的迭代器失效情况：</p>
-<p><code>std::vector</code>：</p>
-<ul>
-<li>在插入或删除元素时，会导致所有迭代器失效。</li>
-<li>在在容器的中间位置插入或删除元素时，后续的迭代器也会失效。</li>
-<li>在对容器进行重新分配内存时，迭代器也会失效。</li>
-</ul>
-<p><code>std::deque</code>：</p>
-<ul>
-<li>在在容器的中间位置插入或删除元素时，会导致所有迭代器失效。</li>
-<li>在对容器进行重新分配内存时，迭代器也会失效。</li>
-</ul>
-<p><code>std::list</code>：</p>
-<ul>
-<li>在插入或删除元素时，不会导致迭代器失效（除了指向要删除的元素的迭代器）。</li>
-<li>对其他元素进行插入或删除操作不会使迭代器失效。</li>
-</ul>
-<p><code>std::map</code> 和 <code>std::set</code>：</p>
-<ul>
-<li>在插入元素时，不会导致迭代器失效。</li>
-<li>在删除元素时，被删除元素的迭代器失效，其他迭代器仍然有效。</li>
-</ul>
-<p><code>std::unordered_map</code> 和 <code>std::unordered_set</code>：</p>
-<ul>
-<li>在插入元素时，可能会导致迭代器失效。</li>
-<li>在删除元素时，被删除元素的迭代器失效，其他迭代器仍然有效。</li>
-</ul>
-<p>需要注意的是，这些规则只是通常情况下的迭代器失效情况，并不是绝对的规则。</p>
+<p>顺序容器适用于需要按照元素插入的顺序进行访问的情况，而关联容器适用于需要根据键值进行查找和排序的情况。除了上述容器，在 C++11 中还引入了一些辅助容器类模板，如 <code>std::queue</code>、<code>std::stack</code>、<code>std::priority_queue</code>，它们是基于顺序容器和适配器设计的。</p>
 <h2 id="vector-list-">vector和list区别</h2>
-<p><strong>内部实现</strong>：</p>
+<ol>
+<li><p>内部实现：</p>
 <ul>
 <li><code>vector</code> 是一个动态数组，它的元素在内存中是连续存放的。</li>
 <li><code>list</code> 则是一个双向链表，它的元素在内存中可能分布在各个不同的地方，元素之间通过指针进行连接。</li>
 </ul>
-<p><strong>访问方式</strong>：</p>
+</li>
+<li><p>访问方式：</p>
 <ul>
 <li><code>vector</code> 支持随机访问，可以直接通过下标访问元素，访问速度快。</li>
 <li><code>list</code> 只支持顺序访问，如果要访问某个元素，需要从头（或尾）开始逐个遍历，直到找到该元素，因此访问速度较慢。</li>
 </ul>
-<p><strong>插入和删除</strong>：</p>
+</li>
+<li><p>插入和删除：</p>
 <ul>
 <li><code>vector</code> 在尾部插入和删除元素非常高效，但在中间或头部插入和删除元素则需要移动大量元素，效率较低。</li>
 <li><code>list</code> 在任何位置插入和删除元素都非常高效，因为只需要修改相应的指针即可。</li>
 </ul>
-<p><strong>空间效率</strong>：</p>
+</li>
+<li><p>空间效率：</p>
 <ul>
 <li><code>vector</code> 由于是连续存储，空间利用率高，但需要预留额外空间以支持动态扩展。</li>
 <li><code>list</code> 由于使用了指针，每个元素都需要额外的空间存放前后元素的地址，因此空间利用率较低。</li>
 </ul>
+</li>
+</ol>
 <h2 id="map-unordered_map-">map和unordered_map区别</h2>
 <p><code>map</code> 和 <code>unordered_map</code> 都是 C++ 标准库中的关联容器，它们都能存储键值对的元素，但是它们的内部实现和性能特性有所不同。</p>
 <ul>
 <li><code>map</code>：内部使用红黑树实现，元素会根据键值自动排序。查找、插入和删除操作的时间复杂度为 <code>O(log n)</code>。<code>map</code> 在遍历时，元素的顺序是升序排列的。</li>
 <li><code>unordered_map</code>：内部使用哈希表实现，元素的排列顺序是不确定的，不会自动排序。理想情况下，查找、插入和删除操作的时间复杂度为 <code>O(1)</code> 。但在哈希冲突严重的情况下，可能会退化到 <code>O(n)</code>。<code>unordered_map</code> 在遍历时，元素的顺序是不确定的。</li>
 </ul>
-<h2 id="vector-">Vector细则</h2>
-<p><strong><code>reserve</code>和<code>resize</code>区别</strong></p>
+<h2 id="vector-">vector细则</h2>
+<ol>
+<li><p><code>reserve</code> 和 <code>resize</code> 的区别</p>
 <ul>
 <li><code>reserve</code> 是用来预分配 <code>vector</code> 的内存空间。它会改变 <code>vector</code> 的 <code>capacity</code>（容量），但是不会改变 <code>vector</code> 的 <code>size</code>（大小）。也就是说，调用 <code>reserve</code> 不会增加 <code>vector</code> 中元素的数量，只是预先分配了内存，以便在将来添加新元素时能够更快。</li>
-<li><code>resize</code> 则是改变 <code>vector</code> 的 <code>size</code>（大小）。如果新的大小大于当前的大小，那么会添加新的元素到 <code>vector</code> 中，这些新元素的值将会被初始化为默认值。如果新的大小小于当前的大小，那么将会删除多余的元素。在这个过程中，<code>vector</code> 的 <code>capacity</code> 可能会改变，如果新的大小大于当前的 <code>capacity</code>，那么会自动增加 <code>capacity</code> 来容纳新的元素。</li>
-</ul>
-<p>以下是 <code>reserve</code> 和 <code>resize</code> 的一个例子</p>
+<li><p><code>resize</code> 则是改变 <code>vector</code> 的 <code>size</code>（大小）。如果新的大小大于当前的大小，那么会添加新的元素到 <code>vector</code> 中，这些新元素的值将会被初始化为默认值。如果新的大小小于当前的大小，那么将会删除多余的元素。在这个过程中，<code>vector</code> 的 <code>capacity</code> 可能会改变，如果新的大小大于当前的 <code>capacity</code>，那么会自动增加 <code>capacity</code> 来容纳新的元素。</p>
+<p>以下是 <code>reserve</code> 和 <code>resize</code> 的一个例子：</p>
 <pre><code>std::vector&lt;int&gt; vec;
 std::cout &lt;&lt; vec.size() &lt;&lt; &quot;, &quot; &lt;&lt; vec.capacity() &lt;&lt; std::endl; // 输出：0, 0
 
@@ -3228,26 +3204,62 @@ std::cout &lt;&lt; vec.size() &lt;&lt; &quot;, &quot; &lt;&lt; vec.capacity() &l
 vec.resize(5);
 std::cout &lt;&lt; vec.size() &lt;&lt; &quot;, &quot; &lt;&lt; vec.capacity() &lt;&lt; std::endl; // 输出：5, 5
 </code></pre><p>在这个例子中，可以看到，调用 <code>reserve</code> 预分配了内存，但是并没有增加元素的数量，而调用 <code>resize</code> 则增加了元素的数量。</p>
-<p><strong>扩容机制</strong></p>
-<p><code>std::vector</code> 是 C++ STL 中一种动态数组，其大小可以在运行时改变。当我们向 <code>std::vector</code> 添加元素时，如果当前分配的内存不足以存放新的元素，<code>std::vector</code> 就需要进行扩容。</p>
-<p><code>std::vector</code> 的扩容机制如下：</p>
+</li>
+</ul>
+</li>
+<li><p>扩容机制</p>
+<p> <code>std::vector</code> 是 C++ STL 中一种动态数组，其大小可以在运行时改变。当我们向 <code>std::vector</code> 添加元素时，如果当前分配的内存不足以存放新的元素，<code>std::vector</code> 就需要进行扩容。</p>
+<p> <code>std::vector</code> 的扩容机制如下：</p>
 <ol>
 <li>当 <code>std::vector</code> 的容量不足以存放新的元素时，它会申请一块新的内存空间。这块新的内存空间的大小通常是当前容量的两倍。这种策略被称为倍增策略。</li>
 <li><code>std::vector</code> 会将旧的元素复制到新的内存空间中。</li>
-<li>释放旧的内存空间。</li>
-</ol>
+<li><p>释放旧的内存空间。</p>
 <p>这种扩容机制可以保证 <code>std::vector</code> 的插入操作的平摊时间复杂度为 <code>O(1)</code>。但是，由于需要复制元素和释放旧的内存空间，扩容操作的实际时间复杂度为 <code>O(n)</code>，其中 <code>n</code> 是 <code>std::vector</code> 中的元素数量。</p>
 <p><code>std::vector</code> 的扩容策略通常是<strong>倍增</strong>，也就是每次扩容时，新的内存空间的大小是当前容量的两倍。如果当前 <code>std::vector</code> 的容量是 <code>n</code>，那么下一次扩容时，它会申请大小为 <code>2n</code> 的内存空间。但是这种策略并非所有编译器和标准库都会使用，有的可能会选择在每次扩容时增加固定数量的内存。</p>
 <p>例如，如果你在初始状态下向一个空的 <code>std::vector</code> 添加元素，它可能首先申请大小为 1 的内存空间。当你再次添加元素时，它会发现当前的内存空间不足，然后申请大小为 2 的内存空间。再次添加元素时，它可能会申请大小为 4 的内存空间，依此类推。</p>
-<p><strong>注意，不同的编译器和标准库可能会使用不同的扩容策略。上面描述的是一种常见的策略，但并非所有实现都会这样做。例如，一些实现可能会选择在每次扩容时增加固定数量的内存，而不是倍增。</strong></p>
-<p><strong>另外，为了避免频繁的扩容操作，如果你已经知道 <code>std::vector</code> 最终需要存储的元素数量，可以使用 <code>std::vector::reserve</code> 方法预先分配足够的内存。</strong></p>
-<p><strong>push_back和emplace_back的区别</strong></p>
-<p><code>push_back</code> 和 <code>emplace_back</code> 都是用于向 <code>vector</code> 的末尾添加元素的函数，但它们的工作方式略有不同。</p>
+<p><strong>注意：不同的编译器和标准库可能会使用不同的扩容策略。上面描述的是一种常见的策略，但并非所有实现都会这样做。例如，一些实现可能会选择在每次扩容时增加固定数量的内存，而不是倍增。另外，为了避免频繁的扩容操作，如果你已经知道 <code>std::vector</code> 最终需要存储的元素数量，可以使用 <code>reserve</code> 方法预先分配足够的内存。</strong></p>
+</li>
+</ol>
+</li>
+<li><p><code>push_back</code> 和 <code>emplace_back</code> 的区别</p>
+<p> <code>push_back</code> 和 <code>emplace_back</code> 都是用于向 <code>vector</code> 的末尾添加元素的函数，但它们的工作方式略有不同：</p>
 <ul>
 <li><code>push_back</code>: 这个函数首先创建一个新的元素，然后将这个元素复制或移动到vector的末尾。这意味着如果你正在添加的元素是一个复杂的对象，那么 <code>push_back</code> 会创建这个对象的一个副本，这可能会涉及到一些额外的开销。</li>
-<li><code>emplace_back</code>: 这个函数直接在 <code>vector</code> 的末尾创建一个新的元素，而不需要先创建一个临时对象，然后再将它复制或移动到 <code>vector</code>。这就避免了不必要的复制或移动操作，从而提高了性能。</li>
+<li><p><code>emplace_back</code>: 这个函数直接在 <code>vector</code> 的末尾创建一个新的元素，而不需要先创建一个临时对象，然后再将它复制或移动到 <code>vector</code>。这就避免了不必要的复制或移动操作，从而提高了性能。</p>
+<p>因此，在添加复杂对象到 <code>vector</code> 时，<code>emplace_back</code> 通常比 <code>push_back</code> 更高效。然而，对于简单的数据类型（例如 <code>int</code>、<code>float</code> 等），两者的性能差异通常可以忽略不计。</p>
+</li>
 </ul>
-<p>因此，在添加复杂对象到 <code>vector</code> 时，<code>emplace_back</code> 通常比 <code>push_back</code> 更高效。然而，对于简单的数据类型（例如<code>int</code>、<code>float</code>等），两者的性能差异通常可以忽略不计。</p>
+</li>
+</ol>
+<h2 id="-">容器迭代器失效</h2>
+<p>常见容器的迭代器失效情况：</p>
+<p><code>std::vector</code>：</p>
+<ul>
+<li>插入‌：若触发重新分配，所有‌迭代器、指针和引用均‌失效‌，触发条件：<code>size() + 1 &gt; capacity()</code>。</li>
+<li>‌插入：若未触发重新分配‌，‌插入点之前‌的迭代器有效‌，插入点及之后‌的迭代器失效‌（因为元素后移，地址改变）。‌特例‌：<code>push_back</code> 在不扩容时，仅使 <code>end()</code> 迭代器失效，其他有效。</li>
+<li>删除：被删除元素‌的迭代器失效‌，被删除元素之后‌的所有迭代器失效‌（因为元素前移，地址改变），被删除元素之前‌的迭代器有效‌。特例‌：<code>pop_back</code> 仅使指向最后一个元素的迭代器和 <code>end()</code> 失效，其他有效。</li>
+</ul>
+<p><code>std::deque</code>：</p>
+<ul>
+<li>插入：所有‌迭代器、指针、引用均‌失效‌（无论头部、尾部或中间）。</li>
+<li>删除：仅‌指向被删元素的迭代器失效，其他‌有效。</li>
+</ul>
+<p><code>std::list</code>：</p>
+<ul>
+<li>插入/删除‌：‌仅‌指向被操作元素（插入点或被删节点）的迭代器失效。</li>
+<li>所有其他元素的迭代器、指针、引用均‌保持有效。</li>
+</ul>
+<p><code>std::map</code> 和 <code>std::set</code>：</p>
+<ul>
+<li>插入‌：‌不会‌导致任何迭代器失效。</li>
+<li>‌删除‌：‌仅‌指向被删元素的迭代器失效，其他‌有效‌。</li>
+</ul>
+<p><code>std::unordered_map</code> 和 <code>std::unordered_set</code>：</p>
+<ul>
+<li>‌插入‌：若未触发‌重新哈希 (Rehashing)‌，迭代器保持有效。</li>
+<li>插入：若插入导致负载因子超过阈值，触发 Rehashing，则‌所有‌迭代器失效。</li>
+<li>‌删除‌：‌仅‌指向被删元素的迭代器失效，其他‌有效‌。</li>
+</ul>
 <h1 id="qt-">Qt信号与槽</h1>
 <h2 id="-">信号与槽概述</h2>
 <p>信号与槽是 Qt 框架引以为豪的机制之一。所谓信号与槽，实际就是观察者模式(发布-订阅模式)。当某个事件发生之后，比如，按钮检测到自己被点击了一下，它就会发出一个信号（<code>signal</code>）。这种发出是没有目的的，类似广播。如果有对象对这个信号感兴趣，它就会使用连接（<code>connect</code>）函数，意思是，将想要处理的信号和自己的一个函数（称为槽（<code>slot</code>））绑定来处理这个信号。也就是说，当信号发出时，被连接的槽函数会自动被回调。这就类似观察者模式：当发生了感兴趣的事件，某一个操作就会被自动触发。</p>
@@ -3331,156 +3343,7 @@ Qt::ConnectionType(Qt::DirectConnection | Qt::UniqueConnection))
 <p> 与回调函数相比，信号和槽稍微慢一些，因为它们提供了更高的灵活性，尽管在实际应用程序中差别不大。通过信号调用的槽函数比直接调用的速度慢约10倍（这是定位信号的接收对象所需的开销；遍历所有关联；编组/解组传递的参数；多线程时，信号可能需要排队），这种调用速度对性能要求不是非常高的场景是可以忽略的，是可以满足绝大部分场景。</p>
 </li>
 </ol>
-<h1 id="-">虚函数表</h1>
-<p>对于一个类来说，<strong>如果类中存在虚函数，那么该类的大小就会多4个字节，然而这4个字节就是一个指针的大小，这个指针指向虚函数表</strong>。所以，如果对象存在虚函数，那么编译器就会生成一个指向虚函数表的指针，所有的虚函数都存在于这个表中，<strong>虚函数表就可以理解为一个数组，每个单元用来存放虚函数的地址</strong>。</p>
-<h2 id="-">虚函数</h2>
-<p>虚函数（Virtual Function）是通过一张虚函数表来实现的。简称为 <code>V-Table</code>。在这个表中，主要是一个类的虚函数的地址表，这张表解决了继承、覆盖的问题，保证其真实反应实际的函数。这样，在有虚函数的类的实例中分配了指向这个表的指针的内存，所以，当用父类的指针来操作一个子类的时候，这张虚函数表就显得尤为重要了，它就像一个地图一样，指明了实际所应该调用的函数。</p>
-<h2 id="-">虚函数表存在的位置</h2>
-<p> 由于虚函数表是由编译器给我们生成的，那么编译器会把虚函数表安插在哪个位置呢？下面可以简单的写一个示例来证明一下虚函数表的存在，以及观察它所存在的位置，先来看一下代码：</p>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;stdio.h&gt;
-using namespace std;
-
-class A
-{
-public:
-    int x;
-    virtual void b() {}
-};
-
-int main()
-{
-    A* p = new A;
-    cout &lt;&lt; p &lt;&lt; endl;
-    cout &lt;&lt; &amp;p-&gt;x &lt;&lt; endl;
-    return 0;
-}
-</code></pre><p>定义了一个类 <code>A</code>，含有一个 <code>x</code> 和一个虚函数，实例化一个对象，然后输出对象的地址和对象成员 <code>x</code> 的地址，我们想一下，如果对象的地址和 <code>x</code> 的地址相同，那么就意味着编译器把虚函数表放在了末尾，如果两个地址不同，那么就意味着虚函数表是放在最前面的。运行结果为16进制，然后我们把它转为10进制观察一下：</p>
-<p><img src="..\images\6b2d8a3392a8332ae5014089cf30c6d0.png" alt=""></p>
-<p>可以观察到结果是不同的，而且正好相差了 4 个字节，由此可见，<strong>编译器把生成的虚函数表放在了最前面</strong>。</p>
-<h2 id="-">获取虚函数表</h2>
-<p>既然虚函数表是真实存在的，那么我们能不能想办法获取到虚函数表呢？其实我们可以通过指针的形式去获得，因为前面也提到了，我们可以把虚函数表看作是一个数组，每一个单元用来存放虚函数的地址，那么当调用的时候可以直接通过指针去调用所需要的函数就行了。我们就类比这个思路，去获取一下虚函数表。首先先定义两个类，一个是基类一个是派生类，代码如下：</p>
-<pre><code>class Base
-{
-public:
-    virtual void a() { cout &lt;&lt; &quot;Base a()&quot; &lt;&lt; endl; }
-    virtual void b() { cout &lt;&lt; &quot;Base b()&quot; &lt;&lt; endl; }
-    virtual void c() { cout &lt;&lt; &quot;Base c()&quot; &lt;&lt; endl; }
-};
-
-class Derive : public Base
-{
-public:
-    virtual void b() { cout &lt;&lt; &quot;Derive b()&quot; &lt;&lt; endl; }
-};
-</code></pre><p>现在我们设想一下 <code>Derive</code> 类中的虚函数表是什么样的，它应该是含有三个指针，分别指向基类的虚函数 <code>a</code> 和基类的虚函数 <code>c</code> 和自己的虚函数 <code>b</code>(因为基类和派生类中含有同名函数，被覆盖)，那么我们就用下面的方式来验证一下：</p>
-<pre><code>    Derive* p = new Derive;
-    long* tmp = (long*)p;             // 先将p强制转换为long类型指针tmp
-
-    // 由于tmp是虚函数表指针，那么*tmp就是虚函数表
-    long* vptr = (long*)(*tmp);
-    for (int i = 0; i &lt; 3; i++)
-    {
-        printf(&quot;vptr[%d] : %p\n&quot;, i, vptr[i]);
-    }
-</code></pre><p>同理，我们把基类的虚函数表的内容也用这种方法获取出来，然后二者进行比较一下，看看是否是符合我们上面所说的那个情况。先看一下完整的代码：</p>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;stdio.h&gt;
-using namespace std;
-
-class Base
-{
-public:
-    virtual void a() { cout &lt;&lt; &quot;Base a()&quot; &lt;&lt; endl; }
-    virtual void b() { cout &lt;&lt; &quot;Base b()&quot; &lt;&lt; endl; }
-    virtual void c() { cout &lt;&lt; &quot;Base c()&quot; &lt;&lt; endl; }
-};
-
-class Derive : public Base
-{
-public:
-    virtual void b() { cout &lt;&lt; &quot;Derive b()&quot; &lt;&lt; endl; }
-};
-
-int main()
-{
-    cout &lt;&lt; &quot;-----------Base------------&quot; &lt;&lt; endl;
-    Base* q = new Base;
-    long* tmp1 = (long*)q;
-    long* vptr1 = (long*)(*tmp1);
-    for (int i = 0; i &lt; 3; i++)
-    {
-        printf(&quot;vptr[%d] : %p\n&quot;, i, vptr1[i]);
-    }
-
-    Derive* p = new Derive;
-    long* tmp = (long*)p;
-    long* vptr = (long*)(*tmp);
-    cout &lt;&lt; &quot;---------Derive------------&quot; &lt;&lt; endl;
-    for (int i = 0; i &lt; 3; i++) {
-        printf(&quot;vptr[%d] : %p\n&quot;, i, vptr[i]);
-    }
-    return 0;
-}
-</code></pre><p>运行结果如下图所示：</p>
-<p><img src="..\images\b2f91ced0aacbfb9906bd79f6d787344.png" alt=""></p>
-<p>可见基类中的三个指针分别指向 <code>a</code>,<code>b</code>,<code>c</code> 虚函数，而派生类中的三个指针中第一个和第三个和基类中的相同，那么这就印证了上述我们所假设的情况，那么这也就是虚函数表。但是仅仅只是观察指向的地址，还不是让我们观察的特别清楚，那么我们就通过定义函数指针，来调用一下这几个地址，看看结果是什么样的，下面直接上代码：</p>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;stdio.h&gt;
-using namespace std;
-
-class Base
-{
-public:
-    virtual void a() { cout &lt;&lt; &quot;Base a()&quot; &lt;&lt; endl; }
-    virtual void b() { cout &lt;&lt; &quot;Base b()&quot; &lt;&lt; endl; }
-    virtual void c() { cout &lt;&lt; &quot;Base c()&quot; &lt;&lt; endl; }
-};
-
-class Derive : public Base
-{
-public:
-    virtual void b() { cout &lt;&lt; &quot;Derive b()&quot; &lt;&lt; endl; }
-};
-
-int main()
-{
-    typedef void (*Func)();
-    cout &lt;&lt; &quot;-----------Base------------&quot; &lt;&lt; endl;
-    Base* q = new Base;
-    long* tmp1 = (long*)q;
-    long* vptr1 = (long*)(*tmp1);
-    for (int i = 0; i &lt; 3; i++) {
-        printf(&quot;vptr[%d] : %p\n&quot;, i, vptr1[i]);
-    }
-    Func a = (Func)vptr1[0];
-    Func b = (Func)vptr1[1];
-    Func c = (Func)vptr1[2];
-    a();
-    b();
-    c();
-
-    Derive* p = new Derive;
-    long* tmp = (long*)p;
-    long* vptr = (long*)(*tmp);
-    cout &lt;&lt; &quot;---------Derive------------&quot; &lt;&lt; endl;
-    for (int i = 0; i &lt; 3; i++)
-    {
-        printf(&quot;vptr[%d] : %p\n&quot;, i, vptr[i]);
-    }
-    Func d = (Func)vptr[0];
-    Func e = (Func)vptr[1];
-    Func f = (Func)vptr[2];
-    d();
-    e();
-    f();
-
-    return 0;
-}
-</code></pre><p>运行结果如下：</p>
-<p><img src="..\images\60bdf1a03d9a9b09b8da98a83098636c.png" alt=""></p>
-<p>这样就清晰的印证了上述所说的假设，那么虚函数表就获取出来了。</p>
-<h2 id="-">多重继承的虚函数表</h2>
+<h1 id="-">多重继承的虚函数表</h1>
 <p>虚函数的引入其实就是为了实现多态，现在来研究一下多重继承的虚函数表是什么样的，首先我们先来看一下简单的一般继承的代码：</p>
 <pre><code>class Base1
 {
@@ -3605,9 +3468,6 @@ int main()
 <li>派生类自己的虚函数放在第一个虚函数表的后面，顺序也是和定义时顺序相同。</li>
 <li>对于派生类如果要覆盖父类中的虚函数，那么会在虚函数表中代替其位置。</li>
 </ul>
-<h2 id="-">虚函数指针和虚函数表的创建时机</h2>
-<p>对于虚函数表来说，在编译的过程中编译器就为含有虚函数的类创建了虚函数表，并且编译器会在构造函数中插入一段代码，这段代码用来给虚函数指针赋值。因此<strong>虚函数表是在编译的过程中创建</strong>。</p>
-<p>对于虚函数指针来说，由于虚函数指针是基于对象的，所以对象在实例化的时候，虚函数指针就会创建，所以<strong>是在运行时创建</strong>。由于在实例化对象的时候会调用到构造函数，所以就会执行虚函数指针的赋值代码，从而将虚函数表的地址赋值给虚函数指针。</p>
 <h2 id="-">虚函数表的深入探索</h2>
 <p>经过上面的学习说明，我们知道了虚函数表的作用，是用来存放虚函数的地址的，那么我们先来看一下这个代码：</p>
 <pre><code>#include &lt;iostream&gt;
@@ -3667,6 +3527,503 @@ a-&gt;virfunc();
 </code></pre><p>这个时候我们再运行程序，由于我们将虚函数指针置为 <code>0</code>，从而找不到了虚函数的位置，那么程序就会崩溃，然后我们再通过反汇编查看一下，如图所示：</p>
 <p><img src="..\images\259d5b953446d00b0a178ba0bb3be608.png" alt=""></p>
 <p>比之前的多了一些汇编指令，其中mov就是寻址的过程，这样就实现了动态绑定，也是根据这一点来实现多态性，这里我只用了一个类来进行展示说明，其实用两个类更好。总之，<strong>如果要实现虚函数和多态，就需要通过指针或者引用的方式</strong>。</p>
+<h1 id="-">类的继承</h1>
+<p>继承是 C++ 面向对象编程的三大基石之一（封装、继承、多态），其在 C++ 中最核心的作用，是建立类型之间的“is-a”（是一种）关系，并以此为基石，实现面向对象编程的三大核心能力：多态、接口规范、代码复用。继承允许我们基于一个已有类（基类）去定义一个新类（派生类），在底层就是内存复制加上成员合并。</p>
+<h2 id="-">类的普通继承</h2>
+<p>我们先来了解最普通的继承，不包含虚函数，不考虑虚继承，最单纯的“is-a”关系。请看下面的代码：</p>
+<pre><code>class Base
+{
+public:
+    Base()
+    {
+        std::cout &lt;&lt; &quot;Base constructor.&quot; &lt;&lt; std::endl;
+    }
+
+    ~Base()
+    {
+        std::cout &lt;&lt; &quot;Base destructor.&quot; &lt;&lt; std::endl;
+    }
+
+    int a;
+    double b;
+};
+
+class Derived : public Base
+{
+public:
+    Derived()
+    {
+        std::cout &lt;&lt; &quot;Derived constructor.&quot; &lt;&lt; std::endl;
+    }
+
+    ~Derived()
+    {
+        std::cout &lt;&lt; &quot;Derived destructor.&quot; &lt;&lt; std::endl;
+    }
+
+    int c;
+};
+</code></pre><h3 id="-">内存布局</h3>
+<p>实现了一个简单的继承关系，<code>Derived</code> 类是 <code>Base</code> 类的派生类，<code>Derived</code> 类中包含了 <code>Base</code> 类的所有成员，包括私有成员。通过测试代码打印出地址信息如下：</p>
+<pre><code>int main()
+{
+    Derived derived;
+
+    std::cout &lt;&lt; &quot;derived对象地址：&quot; &lt;&lt; &amp;derived &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;成员a地址：&quot; &lt;&lt; &amp;derived.a &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;成员b地址：&quot; &lt;&lt; &amp;derived.b &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;成员c地址：&quot; &lt;&lt; &amp;derived.c &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;对齐要求大小：&quot; &lt;&lt; alignof(Derived) &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;内存对齐后大小：&quot; &lt;&lt; sizeof(Derived) &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre><p><img src="..\images\cd859b25b46b4936a4c5b95ede52e19a.png" alt=""></p>
+<p>可以看到，对象 <code>derived</code> 的地址和基类成员 <code>a</code> 的地址是一样的，紧接着是基类成员 <code>b</code> 的地址，最后是派生类成员 <code>c</code> 的地址，这说明基类成员永远在前，派生类成员追加在后面，其内存布局与大小如下：</p>
+<p><img src="..\images\e9e5b9b7b5a24b2ea5f5f22873cccf5f.png" alt=""></p>
+<p>关于内存对齐大小计算，可以参见往期文章<a href="015.内存对齐.md">内存对齐</a>。<strong>注意：如果类中不包含任何成员变量，其大小为 1，而不是 0。这是因为 C++ 标准规定，同一个类的两个不同对象必须拥有不同的内存地址。如果空类大小是 0，那么在定义 <code>EmptyClass arr[10];</code> 数组时，所有元素都会挤在同一个地址，导致 <code>&amp;arr[0] == &amp;arr[1]</code>，这在语言层面是不允许的。因此，编译器会强制给空类注入一个无用的字节（Dummy Byte），使其大小为 1。</strong></p>
+<h3 id="-">构造与析构顺序</h3>
+<p>在 C++ 中，对象的构造与析构顺序是确定的，即先构造基类，再构造派生类。相反，析构时，先析构派生类，再析构基类。这确保了派生类构造时，基类的部分已经准备好了。从上述例子中的输出可以看出，创建对象时，<code>Base</code> 类的构造函数先调用，这时 <code>Base</code> 类的成员 <code>a</code> 和 <code>b</code> 相继被初始化。然后是 <code>Derived</code> 类的构造函数，这时 <code>Derived</code> 类的成员 <code>c</code> 被初始化。释放时，先是 <code>Derived</code> 类的析构函数被调用，这时 <code>Derived</code> 类的成员 <code>c</code> 生命周期结束，然后是 <code>Base</code> 类的析构函数，这时 <code>Base</code> 类的成员 <code>b</code> 和 <code>a</code> 生命周期结束。</p>
+<p>在继承的写法中，如果基类没有默认构造函数，那么派生类的构造函数必须显式调用基类的构造函数。否则，编译器会报错。我们将 <code>Base</code> 类的构造函数改为有参构造函数，使编译器不再生成默认构造函数，修改如下：</p>
+<pre><code>Base(int initA, double initB)
+    : a(initA), b(initB)
+{
+    std::cout &lt;&lt; &quot;Base constructor.&quot; &lt;&lt; std::endl;
+}
+</code></pre><p>派生类 <code>Derived</code> 的构造函数必须显式调用基类的构造函数：</p>
+<pre><code>Derived(int initA, double initB)
+    : Base(initA, initB)
+{
+    std::cout &lt;&lt; &quot;Derived constructor.&quot; &lt;&lt; std::endl;
+}
+</code></pre><h3 id="-">继承访问控制权限</h3>
+<p>上面例子中，我们在声明 <code>Derived</code> 类时，使用的是 <code>class Derived : public Base</code>，注意句中的 <code>public</code> 关键字，类似可用的关键字还有 <code>protected</code> 和 <code>private</code>。三种都可以用于声明派生类，但它们对应不同的访问控制权限。如果省略关键字，默认继承是 <code>private</code>，这一点要注意。</p>
+<p><img src="..\images\5eddef200c4e46a8a541165ea024f0d6.png" alt=""></p>
+<p>使用技巧：</p>
+<ol>
+<li>绝大多数的情况只用 <code>public</code> 继承。</li>
+<li><code>protected</code> 继承几乎不用（因为语义模糊，既不是真正的 “is-a” 关系，也不如组合清晰）。</li>
+<li><code>private</code> 继承可以用，但通常用组合（<code>has-a</code>）替代。</li>
+</ol>
+<h2 id="-">类的虚继承</h2>
+<h3 id="-">菱形继承的问题</h3>
+<p>上面我们介绍了在普通继承的过程中，派生类会完整地包含基类的所有成员。那么考虑下面的情况：</p>
+<pre><code>class A
+{
+public:
+    A() : a(1) {}
+
+    int a;
+};
+
+// 普通继承
+class B : public A
+{
+public:
+    int b;
+};
+
+// 普通继承
+class C : public A
+{
+public:
+    int c;
+};
+
+// 普通多继承
+class D : public B, public C
+{
+public:
+    int d;
+};
+</code></pre><p>当出现菱形继承时（即 <code>B</code> 和 <code>C</code> 都继承自 <code>A</code>，<code>D</code> 同时继承 <code>B</code> 和 <code>C</code>），<code>D</code> 的对象中会包含两份 <code>A</code> 的副本。其内存布局大致如下：</p>
+<p><img src="..\images\a741c0055ef5484b8825ab7e36c89720.png" alt=""></p>
+<p>以下测试代码将会报错，因为对 <code>a</code> 的访问不明确：</p>
+<pre><code>int main()
+{
+    D test;
+    std::cout &lt;&lt; test.a &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre><p>这个时候，我们必须通过<strong>作用域限定符</strong>来指明要访问的是哪个基类的成员，即 <code>test.B::a</code> 或 <code>test.C::a</code>。</p>
+<pre><code>int main()
+{
+    D test;
+    std::cout &lt;&lt; test.B::a &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre><p>这种情况下，我们可以使用 <code>virtual</code> 关键字，告诉编译器“这个基类在整个继承体系中共享同一个实例”，这样消除了数据冗余和二义性，无论中间有多少条继承路径，最终派生类中只有一份最顶层的虚基类子对象。这就是<strong>虚继承</strong>。</p>
+<pre><code>class A
+{
+public:
+    A() : a(1) {}
+
+    int a;
+};
+
+// 虚继承
+class B : virtual public A
+{
+public:
+    int b;
+};
+
+// 虚继承
+class C : virtual public A
+{
+public:
+    int c;
+};
+
+// 虚继承后，D 只含一份 A
+class D : public B, public C
+{
+public:
+    int d;
+};
+</code></pre><p><code>B</code> 和 <code>C</code> 都是采用虚继承的方式继承自 <code>A</code>，所以 <code>D</code> 只含一份 <code>A</code> 的副本。每次通过 <code>D</code> 类对象访问 <code>a</code> 时，编译器通过 vbptr（虚基类指针）间接计算偏移量，定位到唯一的 <code>A</code> 对象。
+其内存布局大致如下：</p>
+<p><img src="..\images\07f1e805d7ad49bfb8e0bf9ef406b09b.png" alt=""></p>
+<p>为什么叫“虚继承”呢？ <code>A</code> 的成员不再分属两个分支，而是放在对象内存的最末尾，全局只有一份，需要通过 vbptr 间接访问（虚的）。</p>
+<h3 id="-">虚基类构造函数的特殊规则</h3>
+<p>虚基类的构造函数由最终派生类调用，而不是由它的直接子类调用。</p>
+<pre><code>class A
+{
+public:
+    A(const std::string&amp; name) : name(name)
+    {
+        std::cout &lt;&lt; &quot;A constructor: &quot; &lt;&lt; name &lt;&lt; std::endl;
+    }
+    std::string name;
+};
+
+class B : virtual public A
+{
+public:
+    B() : A(&quot;from B&quot;)
+    {
+        std::cout &lt;&lt; &quot;B constructor&quot; &lt;&lt; std::endl;
+    }
+};
+
+class C : virtual public A
+{
+public:
+    C() : A(&quot;from C&quot;)
+    {
+        std::cout &lt;&lt; &quot;C constructor&quot; &lt;&lt; std::endl;
+    }
+};
+
+class D : public B, public C
+{
+public:
+    D() : A(&quot;from D&quot;), B(), C()
+    {
+        std::cout &lt;&lt; &quot;D constructor&quot; &lt;&lt; std::endl;
+    }
+};
+
+int main()
+{
+    D test;
+    return 0;
+}
+</code></pre><p>从最终运行结果可以看出，是 <code>D</code> 类触发了 <code>A</code> 的构造函数，而不是 <code>B</code> 和 <code>C</code>。因为 <code>A</code> 只有一份，如果让 <code>B</code> 和 <code>C</code> 各自初始化它，谁来最终决定参数值？为避免冲突，C++ 规定：只有最终派生类 <code>D</code> 才有资格初始化 <code>A</code>，中间类的初始化调用会被悄悄忽略。</p>
+<p>虽然使用虚继承可以避免数据冗余和二义性，但是它也会引入一些额外的复杂性。例如：</p>
+<ol>
+<li>性能下降：每次访问虚基类的成员，都要通过 vbptr 做间接寻址（比直接偏移慢）。</li>
+<li>内存增加：每个虚继承的子类对象里会多一个 vbptr 指针。</li>
+<li>构造复杂度剧增：虚基类的构造函数由最终派生类调用，而不是由它的直接子类调用。</li>
+<li>代码可读性变差：看代码时，很难一眼看出继承关系。</li>
+</ol>
+<h3 id="-">虚继承和普通继承的使用场景</h3>
+<ol>
+<li>有菱形继承（同一个基类被多次间接继承），必须用虚继承，否则会出现数据冗余和访问二义性。</li>
+<li>单继承链（A → B → C），不用虚继承，虚继承会带来额外开销，毫无必要。</li>
+<li>组合关系（<code>has-a</code>），永远不要用继承，应使用成员变量组合实现。</li>
+</ol>
+<h2 id="-">类的多态继承</h2>
+<p>C++ 的多态分为<strong>静态多态（编译时多态）</strong>和<strong>动态多态（运行时多态）</strong>。其中动态多态就是通过类的多态继承来实现同一行为（接口），在不同对象上表现出不同的形态（实现），即允许通过基类指针或引用调用不同派生类的重写函数，实现“一个接口，多种实现”。</p>
+<h3 id="-">多态继承实现要素</h3>
+<p>要实现多态继承，有以下四点核心要素：</p>
+<ol>
+<li>继承：派生类继承基类</li>
+<li>虚函数：基类中使用 <code>virtual</code> 关键字声明函数</li>
+<li>重写：派生类重新定义虚函数</li>
+<li>向上转型：基类指针/引用指向派生类对象</li>
+</ol>
+<pre><code>class Base
+{
+public:
+    Base()
+    {
+        std::cout &lt;&lt; &quot;Base constructor&quot; &lt;&lt; std::endl;
+    }
+
+    // 虚析构函数 - 确保正确释放派生类资源
+    virtual ~Base()
+    {
+        std::cout &lt;&lt; &quot;Base destructor&quot; &lt;&lt; std::endl;
+    }
+
+    // 虚函数 - 支持多态
+    virtual void Print()
+    {
+        std::cout &lt;&lt; &quot;Base::Print&quot; &lt;&lt; std::endl;
+    }
+};
+
+// 派生类1
+class Derived1 : public Base
+{
+public:
+
+    Derived1()
+    {
+        std::cout &lt;&lt; &quot;Derived1 constructor&quot; &lt;&lt; std::endl;
+    }
+
+    ~Derived1()
+    {
+        std::cout &lt;&lt; &quot;Derived1 destructor&quot; &lt;&lt; std::endl;
+    }
+
+    // 重写虚函数 (override 是C++11关键字，可选但推荐)
+    virtual void Print() override
+    {
+        std::cout &lt;&lt; &quot;Derived1::Print&quot; &lt;&lt; std::endl;
+    }
+};
+
+// 派生类2
+class Derived2 : public Base
+{
+public:
+    Derived2()
+    {
+        std::cout &lt;&lt; &quot;Derived2 constructor&quot; &lt;&lt; std::endl;
+    }
+
+    ~Derived2()
+    {
+        std::cout &lt;&lt; &quot;Derived2 destructor&quot; &lt;&lt; std::endl;
+    }
+
+    // 重写虚函数 (override 是C++11关键字，可选但推荐)
+    virtual void Print() override
+    {
+        std::cout &lt;&lt; &quot;Derived2::Print&quot; &lt;&lt; std::endl;
+    }
+};
+
+int main()
+{
+    Base* ptr1 = new Derived1();
+    ptr1-&gt;Print();
+    delete ptr1;
+    ptr1 = nullptr;
+
+    std::cout &lt;&lt; &quot;===========分割线=============&quot; &lt;&lt; std::endl;
+    Base* ptr2 = new Derived2();
+    ptr2-&gt;Print();
+    delete ptr2;
+    ptr2 = nullptr;
+
+    return 0;
+}
+</code></pre><p>运行以上代码，输出结果如下：</p>
+<p><img src="..\images\77cd91c996d649ca95b2e8e609a48ed9.png" alt=""></p>
+<p>按照常理认知，我们使用 <code>Base</code> 的指针来调用 <code>Print()</code> 函数，理应打印出 <code>Base::Print</code>，但是实际情况却是，打印出 <code>Derived1::Print</code> 和 <code>Derived2::Print</code>，代码中几处 <code>virtual</code> 的使用正是关键因素。<code>Derived1</code> 和 <code>Derived2</code> 都是 <code>Base</code> 类的派生类，它们都重新定义了 <code>virtual void Print()</code> 函数，拥有自己的实现，这是一个虚函数的重写。当通过指向派生类对象的 <code>Base</code> 指针调用 <code>Print()</code> 函数时，会调用派生类的 <code>Print()</code> 函数，而不是基类的 <code>Print()</code> 函数，从而打印出不同的结果。当然，代码中使用了继承的机制，基类和派生类的构造函数与析构函数的调用顺序跟我们前一篇文章中的描述是一样的。</p>
+<h3 id="-">多态继承实现原理</h3>
+<p>为什么我们只是添加了一些 <code>virtual</code> 关键字，就可以实现多态继承了？这就不得不介绍几个相关概念：<strong>虚函数</strong>、<strong>虚指针</strong>、<strong>虚函数表</strong>。</p>
+<h4 id="-">虚函数</h4>
+<p>虚函数是指用 <code>virtual</code> 关键字修饰的成员函数，其作用是告诉编译器这个函数需要动态绑定。上述代码中 <code>Base</code> 类的 <code>Print()</code> 函数就是虚函数，它使用了 <code>virtual</code> 关键字修饰。</p>
+<ul>
+<li><p><strong>重写（覆盖）</strong>：发生在派生类与基类之间，函数签名完全相同，且基类函数必须是 <code>virtual</code>。</p>
+<p>  这样的情况既是动态绑定，构成多态。当然在派生类中你也可以不使用 <code>virtual</code> 修饰，但这并不影响其虚函数的属性，因为虚函数的虚属性是沿继承链向下传递的。C++ 标准规定如果某个函数在基类中被声明为 <code>virtual</code>，那么在派生类中重写该函数的函数也是 <code>virtual</code>，无论是否显式使用 <code>virtual</code> 关键字。<code>virtual</code> 关键字在派生类中仅仅是提示性修饰符（为了代码可读性），而不是必要条件。我们通常会在派生类函数最后添加 <code>override</code> 关键字，以示其是一个重写的虚函数，有助于防止拼写错误、参数类型不匹配、返回值类型不兼容、基类函数不是虚函数等各种意外的发生。<code>override</code> 告诉编译器，这个函数必须重写基类中的某个虚函数，如果不是，就报错。示例如下：</p>
+<pre><code>  class Base
+  {
+  public:
+      virtual void Print()
+      {
+          std::cout &lt;&lt; &quot;Base::Print&quot; &lt;&lt; std::endl;
+      }
+
+      // 虚析构函数
+      virtual ~Base() {}
+  };
+
+  // 派生类
+  class Derived : public Base
+  {
+  public:
+
+      // 重写虚函数 (override 是C++11关键字，可选但推荐)
+      virtual void Print() override
+      {
+          std::cout &lt;&lt; &quot;Derived::Print&quot; &lt;&lt; std::endl;
+      }
+  };
+</code></pre></li>
+<li><p><strong>隐藏</strong>：发生在派生类与基类之间，只要函数名相同，但不满足重写条件（基类非 <code>virtual</code>，或参数不同，或返回类型不兼容）。</p>
+<p>  这样的情况即是静态绑定，不构成多态。但派生类的函数会隐藏基类的函数，而不是重写基类的函数。即使你用同样的方法，使用基类指针指向派生类对象来调用<code>Print()</code> 函数，最终也只会调用基类的函数。而如果你使用派生类指针指向派生类对象来调用<code>Print()</code> 函数，最终会调用派生类的函数。上一篇文章我们提到派生类是包含了基类所有成员的，那么我们该怎么让它调用基类的<code>Print()</code> 函数呢？记得菱形继承中的作用域限定符吗？使用作用域限定符，就能够调用到。示例如下：</p>
+<pre><code>  class Base
+  {
+  public:
+      void Print()
+      {
+          std::cout &lt;&lt; &quot;Base::Print&quot; &lt;&lt; std::endl;
+      }
+  };
+
+  // 派生类
+  class Derived : public Base
+  {
+  public:
+
+      // 隐藏基类同名函数
+      void Print()
+      {
+          std::cout &lt;&lt; &quot;Derived::Print&quot; &lt;&lt; std::endl;
+      }
+  };
+</code></pre></li>
+</ul>
+<h4 id="-">虚指针</h4>
+<p>虚指针（vptr）是指每个对象内部隐含的一个指针（32位系统下占用 4 字节），指向该对象所属类的虚函数表。其值通常在对象构造时由编译器注入的代码赋值。在对象的内存布局中，虚指针通常位于对象的最开头。</p>
+<p>我们用一段测试代码来证明一下虚指针的存在：</p>
+<pre><code>class A
+{
+public:
+    int x;
+    virtual void b() {}
+};
+
+int main()
+{
+    A* p = new A;
+    std::cout &lt;&lt; p &lt;&lt; endl;
+    std::cout &lt;&lt; &amp;p-&gt;x &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre><p>定义了一个类 <code>A</code>，含有一个成员变量 <code>x</code> 和一个虚函数 <code>b()</code>，首先我们计算类在 32 位系统下的大小，可以发现如果 <code>b()</code> 是一个虚函数，类 <code>A</code> 的大小为 8，如果不是，类 <code>A</code> 的大小为 4，相差 4 字节，正好是一个指针大小。然后我们创建了一个指针 <code>p</code> 指向 <code>A</code> 的对象，输出对象的地址和对象成员 <code>x</code> 的地址，我们想一下，如果对象的地址和 <code>x</code> 的地址相同，那么就意味着编译器把虚指针放在了末尾，如果两个地址不同，那么就意味着虚指针是放在最前面的。运行结果为十六进制，我们把它转为十进制观察一下：</p>
+<p><img src="..\images\6b2d8a3392a8332ae5014089cf30c6d0.png" alt=""></p>
+<p>可以观察到结果是不同的，而且正好相差了 4 个字节，由此可见，<strong>对象在构造时，编译器会隐式注入一个虚指针，通常位于对象首地址处</strong>。</p>
+<h4 id="-">虚函数表</h4>
+<p>虚函数表（vtable）是指编译器为每个包含虚函数的类生成的函数指针数组，存储该类所有虚函数的实际地址。其是在编译阶段就生成的，通常放在只读数据段（.rodata）中。表中按声明顺序存储所有虚函数的入口地址，如果派生类重写了某个虚函数，表中对应条目替换为派生类版本。</p>
+<p>既然虚函数表是真实存在的，并且是由对象的虚指针所指向，那么我们是否可以通过虚指针来获取到虚函数表的内容呢？我们来看以下示例：</p>
+<pre><code>class Base
+{
+public:
+    virtual void a() { std::cout &lt;&lt; &quot;Base a()&quot; &lt;&lt; std::endl; }
+    virtual void b() { std::cout &lt;&lt; &quot;Base b()&quot; &lt;&lt; std::endl; }
+    virtual void c() { std::cout &lt;&lt; &quot;Base c()&quot; &lt;&lt; std::endl; }
+};
+
+class Derived : public Base
+{
+public:
+    virtual void b() { std::cout &lt;&lt; &quot;Derived b()&quot; &lt;&lt; std::endl; }
+};
+</code></pre><p>定义了基类 <code>Base</code> 与派生类 <code>Derived</code>，其中派生类重写了基类的虚函数 <code>b()</code>。我们来想想办法看能不能将它们的虚函数表打印出来。已知虚指针是放在对象内存布局的最前面，那么对象的地址既是虚指针的地址，我们再对虚指针进行解引用，就可以得到虚函数表的首地址（虚函数表是一个函数指针数组），再遍历数组打印，即可得到虚函数表的内容。</p>
+<pre><code>int main()
+{
+    std::cout &lt;&lt; &quot;-----------Base------------&quot; &lt;&lt; std::endl;
+    Base* p1 = new Base;
+    uintptr_t* vptr1 = (uintptr_t*)p1; // 对象地址既是虚指针地址
+    uintptr_t* vtable1 = (uintptr_t*)(*vptr1); // 解引用虚指针，得到虚函数表的首地址
+    for (int i = 0; i &lt; 3; i++) // 遍历虚函数表，打印每个虚函数的地址
+    {
+        printf(&quot;vtable[%d] : %p\n&quot;, i, (void*)vtable1[i]);
+    }
+
+    Derived* p2 = new Derived;
+    uintptr_t* vptr2 = (uintptr_t*)p2;
+    uintptr_t* vtable2 = (uintptr_t*)(*vptr2);
+    std::cout &lt;&lt; &quot;---------Derived------------&quot; &lt;&lt; std::endl;
+    for (int i = 0; i &lt; 3; i++)
+    {
+        printf(&quot;vtable[%d] : %p\n&quot;, i, (void*)vtable2[i]);
+    }
+
+    return 0;
+}
+</code></pre><p>运行结果如下图所示：</p>
+<p><img src="..\images\b2f91ced0aacbfb9906bd79f6d787344.png" alt=""></p>
+<p>观察结果，我们可以发现 <code>Base</code> 类和 <code>Derived</code> 类的虚函数表中确实分别拥有三个地址，但我们也不能确定这三个地址就是 <code>a()</code>、<code>b()</code>、<code>c()</code> 的函数地址。如果要确认这一点，我们需要将这三个地址转换为函数指针，并调用它们，看是否能正常调用并打印出相应的函数输出。改动如下：</p>
+<pre><code>int main()
+{
+    typedef void (*Func)(); // 定义函数指针类型
+
+    std::cout &lt;&lt; &quot;-----------Base------------&quot; &lt;&lt; std::endl;
+    Base* p1 = new Base;
+    uintptr_t* vptr1 = (uintptr_t*)p1; // 对象地址既是虚指针地址
+    uintptr_t* vtable1 = (uintptr_t*)(*vptr1); // 解引用虚指针，得到虚函数表的首地址
+    for (int i = 0; i &lt; 3; i++) // 遍历虚函数表，打印每个虚函数的地址
+    {
+        printf(&quot;vtable[%d] : %p\n&quot;, i, (void*)vtable1[i]);
+
+        // 转换为函数指针并调用
+        Func func = (Func)vtable1[i];
+        func();
+    }
+
+    Derived* p2 = new Derived;
+    uintptr_t* vptr2 = (uintptr_t*)p2;
+    uintptr_t* vtable2 = (uintptr_t*)(*vptr2);
+    std::cout &lt;&lt; &quot;---------Derived------------&quot; &lt;&lt; std::endl;
+    for (int i = 0; i &lt; 3; i++)
+    {
+        printf(&quot;vtable[%d] : %p\n&quot;, i, (void*)vtable2[i]);
+
+        // 转换为函数指针并调用
+        Func func = (Func)vtable2[i];
+        func();
+    }
+
+    return 0;
+}
+</code></pre><p>运行结果如下：</p>
+<p><img src="..\images\60bdf1a03d9a9b09b8da98a83098636c.png" alt=""></p>
+<p>根据结果分析，这三个地址确实分别对应了 <code>a()</code>、<code>b()</code>、<code>c()</code> 的函数地址，那么虚函数表就获取出来了。而且还可以看到，派生类的虚函数表中，<code>b()</code> 被重写，有了新的地址，而 <code>a()</code> 和 <code>c()</code> 保持不变，跟基类的虚函数表中的地址是一致的。</p>
+<p>总结来说，虚函数表是一个函数指针数组，存储了该类所有虚函数的实际地址。如果派生类重写了某个虚函数，表中对应条目替换为派生类版本。通过虚指针可以获取到虚函数表的内容，从而调用虚函数。虚函数表的布局如下：</p>
+<p><img src="..\images\edf699d2db80414f864580390e185a86.png" alt=""></p>
+<h4 id="-">虚函数中的默认参数</h4>
+<p>在 C++ 中，虚函数的调用是动态绑定的（运行时决定），但默认参数却是静态绑定的（编译时决定）。这两者的绑定时机不同，就导致了一个奇怪的现象。请看如下代码：</p>
+<pre><code>class Base
+{
+public:
+    virtual void func(int x = 10)
+    {
+        cout &lt;&lt; &quot;Base: &quot; &lt;&lt; x &lt;&lt; endl;
+    }
+};
+
+class Derived : public Base
+{
+public:
+    void func(int x = 20) override
+    {
+        cout &lt;&lt; &quot;Derived: &quot; &lt;&lt; x &lt;&lt; endl;
+    }
+};
+
+int main()
+{
+    Base* ptr = new Derived();
+    ptr -&gt;func();
+    delete ptr;
+    return 0;
+}
+</code></pre><p>你是不是以为程序会输出 <code>Derived: 20</code>， 但根据结果来看，程序却输出了 <code>Derived: 10</code>。这是因为编译器在编译时看到 <code>ptr-&gt;func()</code> 时，<code>ptr</code> 的类型是 <code>Base*</code>，查找 <code>Base::func()</code> 的声明，发现默认参数是 10，所以将调用展开为: <code>ptr-&gt;func(10)</code>。在运行时，通过 <code>vptr</code> 找到 <code>Derived</code> 的虚函数表，调用 <code>Derived::func(int x)</code>，此时 <code>x = 10</code>，已经在编译时确定。</p>
+<h4 id="-">注意事项</h4>
+<ol>
+<li>基类必须有虚析构函数，确保派生类正确释放。</li>
+<li>虚函数调用有轻微性能损失（间接寻址）。</li>
+<li>构造函数、静态函数、友元函数不能是虚函数。</li>
+<li>默认参数在虚函数中要谨慎（静态绑定），实际工程中应保持默认参数值一致或不在重写函数中重新指定。</li>
+</ol>
 <h1 id="-default-delete-">显示缺省函数（=default）与显示删除函数（=delete）</h1>
 <h2 id="-default-">显式缺省函数（=default）</h2>
 <p>在 C++ 中，声明自定义的类型( <code>class A</code> )之后，编译器会默认生成一些成员函数，这些函数被称为<strong>类的默认函数</strong>，如默认构造函数、默认拷贝构造函数、默认拷贝赋值运算符函数、默认移动构造函数、默认移动赋值运算符函数、默认析构函数。</p>
@@ -3817,7 +4174,7 @@ Test::Test() = delete;
 <p>C++11 引入了 <code>Lambda</code> 表达式，使得开发人员可以更方便的创建匿名函数。<code>Lambda</code> 表达式是 C++ 语言的一个重要特性，它可以作为函数对象使用，可以用来替代一些繁琐的函数声明和定义。</p>
 <h2 id="lambda-">Lambda表达式的语法</h2>
 <p><code>Lambda</code> 表达式的基本语法结构如下：</p>
-<pre><code>[capture list] (parameter list) specifiers exception -&gt; type { function body }
+<pre><code>[capture list] (parameter list) specifiers exception -&gt; type { function body };
 </code></pre><p>组成如下：</p>
 <ul>
 <li><code>[capture list]</code> 是捕获列表，在应用中必填。</li>
@@ -3828,100 +4185,99 @@ Test::Test() = delete;
 <li><code>{ function body }</code>是表达式的函数体，在应用中必填。</li>
 </ul>
 <p>下面是一个简单的Lambda表达式：</p>
-<pre><code>[](int x, int y){ return x + y; }
+<pre><code>[](int x, int y){ return x + y; };
 </code></pre><p>这个 <code>Lambda</code> 表达式可以看作是一个没有函数名的函数，接受两个整型参数，并返回它们的和。应用实例如下：</p>
 <pre><code>auto f = [](int x, int y){ return x + y; };
 int result = f(10, 20);    //result == 30
 </code></pre><h2 id="lambda-">Lambda表达式的捕获列表</h2>
 <p><code>Lambda</code> 表达式的捕获列表可以捕获当前函数作用域的零个或多个变量，变量之间用逗号分隔；这些变量可以在 <code>Lambda</code> 表达式中被访问和修改。捕获方式有三种，分别是值捕获、引用捕获和混合捕获。</p>
 <ol>
-<li><p>值捕获：将变量的副本拷贝到 <code>Lambda</code> 的闭包对象中。修改副本不会影响原始变量；使用 <code>=</code> 可以将函数作用域的所有变量以值捕获方式传入到表达式中。</p>
-<pre><code> int a = 10; b = 20, c = 30;
+<li><p>值捕获：当 <code>Lambda</code> 表达式使用值捕获时，编译器会在生成闭包对象时，将外部变量的‌当前值‌拷贝一份存储在该对象内部。<code>Lambda</code> 内部操作的是这个‌副本‌，而非原始变量。即使外部变量在 <code>Lambda</code> 调用前被销毁或修改，<code>Lambda</code> 内部持有的副本依然有效且保持不变(特例是：对于指针或者引用需要确保指向或引用的对象一直存在)，这避免了悬空引用的问题。默认情况下，通过值捕获的变量在 <code>Lambda</code> 体内是 <code>const</code> 的，即‌不可修改‌。</p>
+<pre><code> int a = 10, b = 20, c = 30;
 
  //将变量a和b以值捕获方式传入到表达式中
- auto f1 = [a, b]{ return a + b; };
- int result1 = f1();    
- //result1 == 30
+ auto f1 = [a, b] () { return a + b; };
+ int result1 = f1();    //result1 == 30
 
  //将所有变量以值捕获方式传入到表达式中
- auto f2 = [=]{ return a + b + c; };
- int result2 = f2();
- //result2 == 60
+ auto f2 = [=] () { return a + b + c; };
+ int result2 = f2();     //result2 == 60
+
+ auto f3 = [=] () { a = 50; };    // 错误，默认情况下，值捕获的变量是只读的
+ f3();
+
+ auto f4 = [=]() mutable { a = 50; };    // 使用mutable‌关键字允许修改‌副本
+ f4();
 </code></pre></li>
+</ol>
+<p>注意：<code>[=]</code> 不会捕获静态变量或全局变量，因为它们不需要捕获即可直接访问。</p>
+<ol start="2">
 <li><p>引用捕获：将外部变量以引用的方式传递到 <code>Lambda</code> 表达式中，在表达式中可以访问变量和修改变量；使用 <code>&amp;</code> 可以将函数作用域的所有变量以引用捕获方式传入到表达式中。</p>
-<pre><code> int a = 10; b = 20, c = 30;
+<pre><code> int a = 10, b = 20, c = 30;
+
  //将变量a和b以引用捕获方式传入到表达式中
- auto f1 = [&amp;a, &amp;b]{ a++; b++; };
- f1();    
- //a == 11  b == 21
+ auto f1 = [&amp;a, &amp;b] () { a++; b++; };
+ f1();   //a == 11  b == 21
 
  //将所有变量以引用捕获方式传入到表达式中
- auto f2 = [&amp;]{ a++; b++; c++; };
- f2();    
- //a == 12    b == 22    c == 31
+ auto f2 = [&amp;] () { a++; b++; c++; };
+ f2();   //a == 12    b == 22    c == 31
 </code></pre></li>
 <li><p>混合捕获：捕获列表捕获多个变量，既有值捕获的变量也有引用捕获的变量。</p>
-<pre><code> int a = 10; b = 20, c = 30;
+<pre><code> int a = 10,  b = 20, c = 30;
 
  //将变量a和b以值捕获方式传入到表达式中，将变量c以引用捕获方式传递到表达式中
- auto f = [=,&amp;c]{ c++; return a + b; };
- int result = f();    
- //result == 30
- //c == 31
+ auto f = [=, &amp;c] () { c++; return a + b; };
+ int result = f();   //result == 30  c == 31
 </code></pre></li>
 </ol>
 <h2 id="lambda-">Lambda表达式的参数列表</h2>
-<p><code>Lambda</code> 表达式的参数列表与普通函数参数列表一致；如果不需要参数，则可以省略此项。</p>
-<pre><code>//没有参数
-auto f1 = []{ return 1; };
-int result1 = f1();
-//result1 == 1
-
-//两个参数auto
-f2 = [](int x, int y){ return x + y; };
-int result2 = f2(10,20);
-//result2 == 30
-</code></pre><h2 id="lambda-">Lambda表达式的限定符</h2>
-<p><code>Lambda</code> 表达式的限定符值为 <code>mutable</code>，其意义是可以在函数体内修改按值捕获的变量；如果不需要此操作，则可以省略此项。</p>
+<p><code>Lambda</code> 表达式的参数列表在 C++23 标准引入之前，‌不能随意省略空的参数列表 <code>()</code>‌。省略 <code>()</code> 必须同时满足以下所有条件：</p>
+<ol>
+<li>‌没有参数‌：<code>Lambda</code> 不接受任何输入。</li>
+<li>‌没有使用 <code>mutable‌</code>：如果使用了 <code>mutable</code> 关键字，即使没有参数，也‌必须‌写上 <code>()</code>。</li>
+<li>‌没有异常说明符‌：如 <code>noexcept</code>。</li>
+<li>‌没有尾置返回类型‌：如 <code>-&gt; int</code>。</li>
+</ol>
+<pre><code>auto f1 = [] { return 10; };    // 合法
+auto f2 = [] mutable { return 10; };    // 错误/警告，有mutable‌关键字
+auto f3 = [] noexcept { return 10; };    // 错误/警告，有noexcept异常说明符
+auto f4 = [] -&gt; int { return 10; };     // 错误/警告，有尾置返回类型
+</code></pre><p>从 ‌C++23‌ 开始，标准放宽了限制。如果 <code>Lambda</code> 没有参数，‌无论是否使用 <code>mutable</code>、<code>noexcept</code> 等限定符，都可以省略空的参数列表 <code>()</code>‌。</p>
+<h2 id="lambda-">Lambda表达式的限定符</h2>
+<p><code>Lambda</code> 表达式的限定符值有 <code>mutable</code>，其意义是可以在函数体内修改按值捕获的变量；如果不需要此操作，则可以省略此项。</p>
 <pre><code>int a = 10;
+
 //未用mutable修饰
-auto f1 = [a]()
-{    
-    a++;    //报错
-}
+auto f1 = [a]() { a++; };     //报错
 
 //使用mutable修饰
-auto f2 = [a]() mutable 
-{    
-    a++;    //成功
-}
-</code></pre><h2 id="lambda-">Lambda表达式的异常说明符</h2>
+auto f2 = [a]() mutable { a++; };   //成功
+</code></pre><p>C++ 后续标准还有更多的限定符，如：<code>constexpr</code>、<code>consteval</code>等，可以查看更多资料详细了解。</p>
+<h2 id="lambda-">Lambda表达式的异常说明符</h2>
 <p><code>Lambda</code> 表达式的异常说明符值为 <code>noexcept</code>，其意义是指明表达式不会抛出异常；如果不需要此操作，则可以省略此项。</p>
-<pre><code>//未用noexcept修饰auto 
-f1 = [](int x)
-{
-if(x == 0)
-    throw(0);    //成功
-return x;
-}
+<pre><code>//未用noexcept修饰
+auto f1 = [](int x) {
+    if (x == 0)
+        throw(0);    // 合法：允许抛出异常
+    return x;
+};
+
 //使用noexcept修饰
-auto f2 = [](int x) noexcept 
-{
-if(x == 0)
-    throw(0);    //报错
-return x;
-}
+auto f2 = [](int x) noexcept {
+    if (x == 0)
+        throw(0);    // 错误/警告：违反 noexcept 承诺
+    return x;
+};
 </code></pre><h2 id="lambda-">Lambda表达式的返回值类型</h2>
 <p>用 <code>-&gt; type</code> 可以指定 <code>Lambda</code> 表达式返回值类型；如果不指定返回类型，则编译器会根据代码实现为函数推导一个返回类型；如果没有返回值，则可忽略此部分。</p>
-<pre><code>//指定返回值类型
-auto f1 = []()-&gt;int { return 1; };
-int result1 = f1();
-//result == 1
+<pre><code>// 指定返回值类型
+auto f1 = []() -&gt; int { return 1; };
+int result1 = f1();       // result == 1
 
-//不指定返回值类型
-auto f2 = [](){ return 1; };
-int result2 = f2();
-//result == 1
+// 不指定返回值类型
+auto f2 = []() { return 1; };
+int result2 = f2();     //result == 1
 </code></pre><h2 id="lambda-">Lambda表达式的函数体</h2>
 <p><code>Lambda</code> 表达式的函数体部分与普通函数体一致。</p>
 <pre><code>auto f1 = []{ std::cout &lt;&lt; &quot;hello world&quot; &lt;&lt; std::endl; };
@@ -3940,38 +4296,32 @@ auto f2 = [](int x, int y){ return x + y; };
 <li>性能：<code>Lambda</code> 表达式可能会产生额外的开销，例如变量捕获和函数调用的开销。</li>
 </ol>
 <h2 id="-">结论</h2>
-<p>C++ <code>Lambda</code> 表达式是一项重要的语言特性，它使得开发人员可以更方便地创建匿名函数和函数对象。Lambda表达式的语法简洁、灵活，可以捕获外部变量，并且可以作为任何需要函数对象的地方使用。<code>Lambda</code> 表达式也存在一些缺点，包括可读性、复杂性和性能问题。在实际开发中，开发人员应该根据具体情况权衡利弊，选择合适的编程风格和实现方式。</p>
+<p>C++ <code>Lambda</code> 表达式是一项重要的语言特性，它使得开发人员可以更方便地创建匿名函数和函数对象。<code>Lambda</code> 表达式的语法简洁、灵活，可以捕获外部变量，并且可以作为任何需要函数对象的地方使用。<code>Lambda</code> 表达式也存在一些缺点，包括可读性、复杂性和性能问题。在实际开发中，开发人员应该根据具体情况权衡利弊，选择合适的编程风格和实现方式。</p>
 <h1 id="std-function-std-bind">std::function与std::bind</h1>
 <h2 id="std-function">std::function</h2>
-<p><code>std::function</code> 是函数模板类（是一个类），位于头文件 <code>#include &lt;functional&gt;</code> 中。以前没有这个类的时候，我们在想定义一个回调函数指针，非常的麻烦。我们通常这样的定义：</p>
-<pre><code>typedef  void（*ptr）（int，int）// 这里的ptr就是一个函数指针
+<p><code>std::function</code> 是一个通用的、多态的‌函数包装器‌（Function Wrapper），它是一个‌类模板‌，其模板参数是函数的签名（返回类型和参数类型列表），位于头文件 <code>&lt;functional&gt;</code> 中。以前没有这个‌函数包装器的时候，我们在想定义一个回调函数指针，非常的麻烦。我们通常这样的定义：</p>
+<pre><code>typedef void (*func) (int, int); // 这里的ptr就是一个函数指针
 </code></pre><p>而使用了 <code>std::function</code> 这个类的时候，我们可以这样使用，来替换函数指针。例如：</p>
-<pre><code>std::function&lt;void(int ,int)&gt; func;
-</code></pre><p><code>std::function</code> 的实例能存储、复制及调用任何可调用 (Callable) 目标——函数、 <code>Lambda</code> 表达式、 <code>bind</code> 表达式或其他函数对象，还有指向成员函数指针和指向数据成员指针。</p>
-<p>它也是对 C++ 中现有的可调用实体的一种类型安全的包裹（相对来说，函数指针的调用不是类型安全的）</p>
+<pre><code>std::function&lt;void(int, int)&gt; func;
+</code></pre><p><code>std::function</code> 的实例能存储、复制及调用任何可调用 (Callable) 目标，包括函数、 <code>Lambda</code> 表达式、 <code>bind</code> 表达式或其他函数对象，还有指向成员函数指针和指向数据成员指针。</p>
+<p>它也是对 C++ 中现有的可调用实体的一种类型安全的包裹（相对来说，函数指针的类型安全机制脆弱得多）</p>
 <pre><code>#include &lt;iostream&gt;
-#include &lt;vector&gt;
-#include &lt;list&gt;
-#include &lt;map&gt;
-#include &lt;set&gt;
-#include &lt;string&gt;
-#include &lt;algorithm&gt;
 #include &lt;functional&gt;
-#include &lt;memory&gt;
 using namespace std;
 
-//声明一个模板
+// 声明一个模板
 typedef std::function&lt;int(int)&gt; Functional;
+
 //normal function
 int TestFunc(int a)
 {
     return a;
 }
 
-//lambda expression
-auto lambda = [](int a)-&gt;int{return a;};
+// lambda表达式
+auto lambda = [](int a) -&gt;int { return a; };
 
-//functor仿函数
+// functor仿函数
 class Functor
 {
 public:
@@ -3981,7 +4331,7 @@ public:
     }
 };
 
-//类的成员函数和类的静态成员函数
+// 类的成员函数和类的静态成员函数
 class CTest
 {
 public:
@@ -3997,23 +4347,23 @@ public:
 
 int main(int argc, char* argv[])
 {
-    //封装普通函数
+    // 封装普通函数
     Functional obj = TestFunc;
     int res = obj(0);
     cout &lt;&lt; &quot;normal function : &quot; &lt;&lt; res &lt;&lt; endl;
 
-    //封装lambda表达式
+    // 封装lambda表达式
     obj = lambda;
     res = obj(1);
     cout &lt;&lt; &quot;lambda expression : &quot; &lt;&lt; res &lt;&lt; endl;
 
-    //封装仿函数
+    // 封装仿函数
     Functor functorObj;
     obj = functorObj;
     res = obj(2);
     cout &lt;&lt; &quot;functor : &quot; &lt;&lt; res &lt;&lt; endl;
 
-    //封装类的成员函数和static成员函数
+    // 封装类的成员函数和static成员函数
     CTest t;
     obj = std::bind(&amp;CTest::Func, &amp;t, std::placeholders::_1);
     res = obj(3);
@@ -4025,7 +4375,8 @@ int main(int argc, char* argv[])
     return 0;
 }
 </code></pre><h2 id="std-bind">std::bind</h2>
-<p>可将 <code>std::bind</code> 函数看作一个通用的函数适配器，它接受一个可调用对象，生成一个新的可调用对象来<strong>适应</strong>原对象的参数列表。<code>std::bind</code> 将可调用对象与其参数一起进行绑定，绑定后的结果可以使用 <code>std::function</code> 保存。<code>std::bind</code> 主要有以下两个作用：</p>
+<p>可将 <code>std::bind</code> 函数看作一个通用的函数适配器（Function Adapter），它接受一个可调用对象，生成一个新的可调用对象来<strong>适应</strong>原对象的参数列表。<code>std::bind</code> 将可调用对象与其参数一起进行绑定，绑定后的结果可以使用 <code>std::function</code> 保存。</p>
+<h3 id="std-bind-">std::bind的作用</h3>
 <ul>
 <li>将可调用对象和其参数绑定成一个仿函数；</li>
 <li>只绑定部分参数，减少可调用对象传入的参数。</li>
@@ -4033,240 +4384,345 @@ int main(int argc, char* argv[])
 <p>各种情况举例如下:</p>
 <ol>
 <li><p>绑定普通函数</p>
-<pre><code> double my_divide (double x, double y) {return x/y;}
- auto fn_half = std::bind (my_divide, std::placeholders::_1, 2);
- std::cout &lt;&lt; fn_half(10) &lt;&lt; &#39;\n&#39;;
+<pre><code> double my_function(double x, double y)
+ {
+     return x / y;
+ }
+
+ int main()
+ {
+     // normal function
+     auto fn_half = std::bind(my_function, std::placeholders::_1, 2);
+     cout &lt;&lt; fn_half(10) &lt;&lt; endl;
+     return 0;
+ }
 </code></pre><ul>
-<li><code>bind</code> 的第一个参数是函数名，普通函数做实参时，会隐式转换成函数指针。因此 <code>std::bind (my_divide,_1,2)</code>等价于 <code>std::bind (&amp;my_divide,_1,2)</code>；</li>
-<li><code>_1</code> 表示占位符，位于 <code>&lt;functional&gt;</code> 中,<code>std::placeholders::_1</code>；</li>
+<li><code>std::bind</code> 的第一个参数是函数名，当普通函数名作为实参传递时，会隐式转换为指向该函数的指针。因此，在 <code>std::bind</code> 中，直接使用函数名 <code>my_function</code> 和使用取地址符 <code>&amp;my_function</code> 的效果是完全等价的。</li>
+<li><code>_1</code> 是一个占位符对象，代表绑定后生成的新可调用对象的‌第一个参数‌。当调用这个新对象时，传入的第一个实参将被替换到原函数参数列表中 <code>_1</code> 所在的位置。占位符定义在 <code>&lt;functional&gt;</code> 头文件中，并且位于 <code>std::placeholders</code> 命名空间下，完整写法：<code>std::placeholders::_1</code>。占位符详细见下一小节。</li>
 </ul>
 </li>
 <li><p>绑定类成员变量</p>
 <pre><code> struct Foo
  {
+     int data = 10;
      void print_sum(int n1, int n2)
      {
-         std::cout &lt;&lt; n1+n2 &lt;&lt; &#39;\n&#39;;
+         std::cout &lt;&lt; n1 + n2 &lt;&lt; std::endl;
      }
-     int data = 10;
  };
- int main() 
+
+ int main()
  {
      Foo foo;
-     auto f = std::bind(&amp;Foo::print_sum, &amp;foo, 95, std::placeholders::_1);
-     f(5); // 100
+     //auto f1 = std::bind(Foo::print_sum, &amp;foo, 95, std::placeholders::_1);  //错误，请使用 &quot;&amp;&quot; 来创建指向成员的指针
+     auto f2 = std::bind(&amp;Foo::print_sum, &amp;foo, 95, std::placeholders::_1);
+     f2(5); // 100
+     return 0;
  }
 </code></pre><ul>
-<li><code>bind</code> 绑定类成员函数时，第一个参数表示对象的成员函数的指针，第二个参数表示对象的地址。</li>
+<li><code>std::bind</code> 绑定类成员函数时，第一个参数表示对象的成员函数的指针，第二个参数表示对象的地址。</li>
 <li>必须显示的指定 <code>&amp;Foo::print_sum</code>，因为编译器不会将对象的成员函数隐式转换成函数指针，所以必须在 <code>Foo::print_sum</code> 前添加 <code>&amp;</code>；</li>
-<li>使用对象成员函数的指针时，必须要知道该指针属于哪个对象，因此第二个参数为对象的地址 <code>&amp;foo</code>；</li>
+<li>使用对象成员函数的指针时，必须要知道该指针属于哪个对象，因此第二个参数为对象的地址 <code>&amp;foo</code> 或者通过占位符调用时传入对象；</li>
 </ul>
 </li>
 <li><p>绑定一个引用参数</p>
-<p> 默认情况下，<code>bind</code>的那些不是占位符的参数被拷贝到 <code>bind</code> 返回的可调用对象中。但是，与<code>Lambda</code> 类似，有时对有些绑定的参数希望以引用的方式传递，或是要绑定参数的类型无法拷贝。</p>
-<pre><code> void my_divide(int x, int&amp; y, const int&amp; z) 
+<p> 默认情况下，<code>std::bind</code>的那些不是占位符的参数被拷贝到 <code>std::bind</code> 返回的可调用对象中。但是，与 <code>Lambda</code> 类似，有时对有些绑定的参数希望以引用的方式传递，或是要绑定参数的类型无法拷贝，<code>std::ref</code> 与 <code>std::cref</code>有了用武之地。</p>
+<pre><code> void my_function(int x, int&amp; y, const int&amp; z)
  {
      std::cout &lt;&lt; x + y + z;
  }
- int cy = 2, cz = 3;
- auto fn_half = std::bind(my_divide, std::placeholders::_1, std::ref(cy), std::cref(cz));
 
- fn_half(10);
-</code></pre></li>
-<li><p>指向成员函数的指针</p>
-<pre><code> #include &lt;iostream&gt;
- struct Foo
- {
-     int value;
-     void f() { std::cout &lt;&lt; &quot;f(&quot; &lt;&lt; this-&gt;value &lt;&lt; &quot;)\n&quot;; }
-     void g() { std::cout &lt;&lt; &quot;g(&quot; &lt;&lt; this-&gt;value &lt;&lt; &quot;)\n&quot;; }
- };
- void apply(Foo* foo1, Foo* foo2, void (Foo::*fun)())
- {
-     (foo1-&gt;*fun)();  // call fun on the object foo1
-     (foo2-&gt;*fun)();  // call fun on the object foo2
- }
  int main()
  {
-     Foo foo1{1};
-     Foo foo2{2};
-     apply(&amp;foo1, &amp;foo2, &amp;Foo::f);
-     apply(&amp;foo1, &amp;foo2, &amp;Foo::g);
+     int cy = 2, cz = 3;
+     auto fn_half = std::bind(my_function, std::placeholders::_1, std::ref(cy), std::cref(cz));
+     fn_half(10);
+
+     return 0;
  }
-</code></pre><ul>
-<li>成员函数指针的定义：<code>void (Foo::*fun)()</code>，调用是传递的实参: <code>&amp;Foo::f</code>。</li>
-<li><code>fun</code> 为类成员函数指针，所以调用是要通过解引用的方式获取成员函数 <code>*fun</code>，即 <code>(foo1-&gt;*fun)()</code>。</li>
-</ul>
-</li>
+</code></pre></li>
+</ol>
+<h3 id="-">占位符的作用</h3>
+<p>在绑定函数时&quot;预留参数位置&quot;，延迟到调用时再传入具体值。<code>std::placeholders::_1</code>、<code>std::placeholders::_2</code> ...... <code>std::placeholders::_20</code> 就是一个&quot;空位标记&quot;，调用时传入的值会填入这个空位。</p>
+<ol>
+<li><p>延迟参数传入（最常用）</p>
+<pre><code> int add(int a, int b)
+ {
+     return a + b;
+ }
+
+ int main()
+ {
+     // 固定第一个参数为 10，第二个参数留空
+     auto add10 = std::bind(add, 10, std::placeholders::_1);
+     std::cout &lt;&lt; add10(5) &lt;&lt; std::endl;   // 10 + 5 = 15
+     return 0;
+ }
+</code></pre></li>
+<li><p>调整参数顺序</p>
+<pre><code> void print(int a, int b, int c)
+ {
+     std::cout &lt;&lt; a &lt;&lt; &quot;, &quot; &lt;&lt; b &lt;&lt; &quot;, &quot; &lt;&lt; c &lt;&lt; std::endl;
+ }
+
+ int main()
+ {
+     // 原始顺序: a, b, c
+     // 绑定后顺序: c, a, b（通过占位符调整）
+     auto reordered = std::bind(print, std::placeholders::_3, std::placeholders::_1, std::placeholders::_2);
+
+     reordered(1, 2, 3);  // 输出: 3, 1, 2   // _3 → 3, _1 → 1, _2 → 2
+     return 0;
+ }
+</code></pre></li>
+<li><p>成员函数不绑定对象（延迟传入对象）</p>
+<pre><code> struct Foo
+ {
+     int value;
+     void print() const
+     {
+         std::cout &lt;&lt; value &lt;&lt; std::endl;
+     }
+ };
+
+ int main()
+ {
+     Foo foo1{ 10 };
+
+     // 绑定对象(&amp;foo1)
+     auto printer1 = std::bind(&amp;Foo::print, &amp;foo1);
+     printer1();  // 输出: 10
+
+     // 不绑定对象，用_1表示&quot;调用时传入对象&quot;
+     auto printer2 = std::bind(&amp;Foo::print, std::placeholders::_1);
+     printer2(&amp;foo1);  // 输出: 10
+     return 0;
+ }
+</code></pre></li>
 </ol>
 <h1 id="std-move-forward">std中move与forward</h1>
-<p>C++11 新增了右值引用，引入了右值引用的概念，使得我们把引用与右值进行绑定。使用两个“取地址符号”：</p>
+<p>C++11 引入了右值引用的概念，使得我们能够把引用与右值进行绑定。虽然它看起来像两个“取地址符号”（<code>&amp;</code>）连在一起，但在 C++11 的语境下，<code>&amp;&amp;</code> 具有全新的含义：‌<strong>右值引用声明符‌</strong>。如下：</p>
 <pre><code>int&amp;&amp; rvalue_ref = 10;
-</code></pre><h2 id="-">相关概念</h2>
-<h3 id="-">左值和右值</h3>
-<ul>
-<li><p>通过等号划分</p>
-<ul>
-<li>左值：可以放到等号左边的东西叫左值。</li>
-<li>右值：不可以放到等号左边的东西就叫右值。</li>
-</ul>
+</code></pre><h2 id="-">左值和右值</h2>
+<h3 id="-">如何区分左值与右值</h3>
+<ol>
+<li><p>通过赋值运算符 <code>=</code> 划分</p>
+</li>
+<li><p>左值：可以放到赋值运算符左侧的东西叫左值，代表一个持久的、有身份的对象，可以被修改（除非是 <code>const</code>）。</p>
+</li>
+<li><p>右值：只能放到赋值运算符右侧的东西就叫右值，通常是一个临时值、计算结果或字面量，没有持久的身份，不能被直接赋值。</p>
 </li>
 <li><p>通过是否可取地址划分</p>
-<ul>
-<li>左值：可以取地址并且有名字的东西就是左值。</li>
-<li>右值：不能取地址的没有名字的东西就是右值。</li>
-</ul>
 </li>
-</ul>
-<pre><code>int a = b + c;
-</code></pre><p><code>a</code> 是左值，有变量名，可以取地址，也可以放到等号左边, 表达式 <code>b+c</code> 的返回值是右值，没有名字且不能取地址，<code>&amp;(b+c)</code> 不能通过编译，而且也不能放到等号左边。</p>
-<pre><code>int a = 4; // a是左值，4作为普通字面量是右值
-</code></pre><p>左右值的区别很明显：</p>
-<p>左值有持久的状态，而右值要么是字面常量，要么是在表达式求值过程中创建的临时对象。</p>
-<p>左值一般有：</p>
-<ul>
-<li>函数名和变量名</li>
-<li>返回左值引用的函数调用</li>
-<li>前置自增自减表达式 <code>++i</code>、<code>–i</code></li>
-<li>由赋值表达式或赋值运算符连接的表达式(<code>a=b</code>, <code>a += b</code> 等)</li>
-<li>解引用表达式 <code>*p</code></li>
-<li>字符串字面值 &quot;abcd&quot;（跟其他字面量有点不太一样）</li>
-</ul>
-<h3 id="-">纯右值和将亡值</h3>
-<p>纯右值和将亡值都属于右值。</p>
-<h4 id="-">纯右值</h4>
+<li><p>左值：有名字（通常是一个变量名、函数名或引用），‌可取地址（使用 <code>&amp;</code> 运算符获取其内存地址），生命周期持久（在表达式结束后依然存在）的东西就是左值。</p>
+</li>
+<li>右值：无名字（通常是匿名临时对象），不可取地址（对右值使用 <code>&amp;</code> 运算符会导致编译错误，除非使用特殊技巧，但常规意义上不可取址），生命周期短暂‌（通常在当前表达式结束后立即销毁）的东西就是右值。</li>
+</ol>
+<pre><code>int b = 1, c = 2;
+int a = b + c;
+</code></pre><p>①、<code>a</code>、<code>b</code>、<code>c</code> 是左值，有变量名，可以取地址，生命周期持久（直到作用域结束），也可以放到等号左边。</p>
+<p>②‌、表达式 <code>b+c</code> 的结果是右值，没有名字，不能取地址，生命周期短暂‌（赋值给 <code>a</code> 后立即销毁），<code>&amp;(b+c)</code> 不能通过编译，而且也不能放到等号左边。</p>
+<p>③、数字 <code>1</code>、<code>2</code> 作为普通字面量是右值。</p>
+<h3 id="-">常见的左值与右值</h3>
+<p>左右值的区别很明显，左值有持久的状态，而右值要么是字面常量，要么是在表达式求值过程中创建的临时对象。</p>
+<ol>
+<li>左值：</li>
+<li>变量名（代表内存中的一块特定区域，只要变量作用域未结束，它就存在）</li>
+<li>函数名（本身也是一个左值，它可以转换为函数指针）</li>
+<li>返回左值引用的函数调用（如果函数返回类型是左值引用 <code>T&amp;</code>，那么该函数调用的结果是一个左值）</li>
+<li>前置自增/自减表达式（如：<code>++i</code>、<code>--j</code>，前置运算符先修改变量，然后返回‌变量本身‌的引用。因为返回的是引用，所以结果是左值）</li>
+<li>由赋值表达式或赋值运算符连接的表达式（如：<code>a=b</code>, <code>a+= b</code> 等，这意味着赋值表达式的结果是一个左值，可以继续进行链式赋值或作为其他左值引用的绑定目标）</li>
+<li>解引用表达式（如：<code>*p</code>，对指针进行解引用操作，得到的是指针所指向的对象。既然指向的是一个实际存在的对象，那么结果自然是一个左值）</li>
+<li><p>字符串字面值（如：<code>abcd</code>，跟其他字面量有点不太一样，字符串字面值存储在静态存储区，具有静态生命周期，因此它们是‌左值‌，但它们却是 <code>‌const</code> 左值‌，不能修改内容）</p>
+</li>
+<li><p>右值：</p>
+</li>
+<li>返回值的函数调用‌（如果函数返回非引用类型 <code>T</code>，结果是右值）</li>
+<li>算术表达式‌（如：<code>a+b</code>, <code>x*2</code>，这些计算产生临时结果）</li>
+<li>后置自增/自减表达式（如：<code>i++</code>, <code>j--</code>，返回的是临时副本）</li>
+<li>强制类型转换产生的临时对象（如：<code>static_cast&lt;double&gt;(i)</code>）</li>
+<li>字面常量‌（除字符串字面值外）</li>
+<li><code>std::move</code> 的结果（如：<code>std::move(x)</code>，其结果是将亡值，属于右值的一种）</li>
+<li>‌<code>Lambda</code> 表达式‌（生成一个唯一的闭包类对象，该对象是临时的，属于纯右值）</li>
+</ol>
+<h2 id="-">纯右值和将亡值</h2>
+<p>纯右值和将亡值都属于右值的范畴。</p>
+<h3 id="-">纯右值</h3>
 <p>运算表达式产生的临时变量、不和对象关联的原始字面量、非引用返回的临时变量、<code>Lambda</code> 表达式等都是纯右值。</p>
 <ul>
 <li>除字符串字面值外的字面值</li>
 <li>返回非引用类型的函数调用</li>
-<li>后置自增自减表达式 <code>i++</code>、<code>i–</code></li>
-<li>算术表达式(<code>a+b</code>, <code>a*b</code>, <code>a&amp;&amp;b</code>, <code>a==b</code> 等)</li>
-<li>取地址表达式等(<code>&amp;a</code>)</li>
+<li>类生成的临时对象（如：<code>MyClass()</code>）</li>
+<li>后置自增自减表达式 （如：<code>i++</code>、<code>i--</code>）</li>
+<li>算术表达式(如：<code>a+b</code>, <code>a*b</code>, <code>a&amp;&amp;b</code>, <code>a==b</code> 等)</li>
+<li>取地址表达式等(如：<code>&amp;a</code>)</li>
 </ul>
-<h4 id="-">将亡值</h4>
-<p>将亡值是指 C++11 新增的和右值引用相关的表达式，通常指将要被移动的对象、<code>T&amp;&amp;</code> 函数的返回值、<code>std::move</code> 函数的返回值、转换为 <code>T&amp;&amp;</code> 类型转换函数的返回值。</p>
-<p>将亡值可以理解为<strong>即将要销毁的值</strong>，通过“盗取”其它变量内存空间方式获取的值，在确保其它变量不再被使用或者即将被销毁时，可以避免内存空间的释放和分配，延长变量值的生命周期，常用来完成移动构造或者移动赋值的特殊任务。</p>
+<h3 id="-">将亡值</h3>
+<p>将亡值是 C++11 新增的，可以理解为<strong>即将要销毁的值</strong>，目的是告诉编译器，这个对象马上就要销毁或不再使用了，你可以直接拿走它的内部资源（如指针、内存块），而不需要进行昂贵的深拷贝。常用来完成移动构造或者移动赋值的特殊任务。</p>
+<ul>
+<li>返回右值引用（<code>T&amp;&amp;</code>）的函数调用</li>
+<li>转换为 <code>T&amp;&amp;</code> 类型转换函数的返回值（如：<code>static_cast&lt;T&amp;&amp;&gt;(lvalue_obj)</code>）</li>
+<li><code>std::move</code> 函数的返回值（<code>std::move</code>的本质‌也是调用<code>static_cast</code>）</li>
+</ul>
 <pre><code>class A 
 {
     xxx;
 };
+
 A a;
-auto c = std::move(a); // c是将亡值
-auto d = static_cast&lt;A&amp;&amp;&gt;(a); // d是将亡值
-</code></pre><h2 id="-">左值引用和右值引用</h2>
-<p>通过名字也能大概明白：</p>
-<ul>
-<li>左值引用就是对左值进行引用的类型；</li>
-<li>右值引用就是对右值进行引用的类型。</li>
-</ul>
-<p>他们都是引用，都是对象的一个别名，<strong>并不拥有所绑定对象的堆存</strong>，所以都必须立即初始化</p>
+auto c = std::move(a);
+auto d = static_cast&lt;A&amp;&amp;&gt;(a);
+</code></pre><p>①、<code>c</code>、<code>d</code> 是左值，有变量名，可以取地址，生命周期持久（直到作用域结束），也可以放到等号左边。</p>
+<p>②‌、表达式 <code>std::move(a)</code>、<code>static_cast&lt;A&amp;&amp;&gt;(a)</code> 的结果是将亡值，即右值。</p>
+<h2 id="-">左值引用和右值引用</h2>
+<p>它们都是引用，都是对象的一个别名，<strong>并不拥有所绑定对象的资源</strong>，都必须立即初始化。</p>
 <pre><code>type &amp;name = exp; // 左值引用
 type &amp;&amp;name = exp; // 右值引用
 </code></pre><h3 id="-">左值引用</h3>
-<pre><code>int a = 5;
-int &amp;b = a; // b是左值引用
-b = 4;
-int &amp;c = 10; // error，10无法取地址，无法进行引用
-const int &amp;d = 10; // ok，因为是常引用，引用常量数字，这个常量数字会存储在内存中，可以取地址
-</code></pre><p>对于左值引用，等号右边的值必须可以取地址，如果不能取地址，则会编译失败，或者可以使用const引用形式，但这样就只能通过引用来读取输出，不能修改数组，因为是常量引用。</p>
+<p>左值引用分为两部分：</p>
+<ol>
+<li>非常量左值引用（<code>T&amp;</code>）‌只能绑定到左值；</li>
+<li><p>常量左值引用（<code>const T&amp;</code>）是“万能引用”‌：它可以绑定到‌左值‌、‌纯右值‌和‌将亡值‌。</p>
+<pre><code> int a = 5;
+ int&amp; b = a; // b是左值引用
+
+ int&amp; c = 10; // error，10 是纯右值，不能绑定到非常量左值引用
+ const int&amp; d = 10; // ok，因为是常量左值引用，可以绑定到右值
+</code></pre></li>
+</ol>
+<p>对于非常量左值引用，赋值符号右边的值必须是左值，意味着可以取地址，如果不能取地址，则会编译失败。或者可以使用常量左值引用，但这样就只能通过引用来读取数据，不能修改数据。</p>
 <h3 id="-">右值引用</h3>
+<p>专门用于绑定‌右值‌（包括‌纯右值‌和‌将亡值‌）</p>
 <pre><code>int a = 4;
 int &amp;&amp;b = a; // error, a是左值
-int &amp;&amp;c = std::move(a); // ok
-</code></pre><p>如果使用右值引用，那表达式等号右边的值需要时右值，可以使用 <code>std::move</code> 函数强制把左值转换为右值。</p>
-<h2 id="std-move">std::move</h2>
-<h3 id="-">深拷贝与浅拷贝</h3>
-<p>深拷贝是指在进行复制操作时，创建一个完全独立的新对象，并递归地复制原始对象及其所有子对象。换句话说，深拷贝会复制对象的所有层级，包括对象的属性、嵌套对象、引用等。因此，原始对象和复制对象是完全独立的，修改其中一个对象不会影响另一个对象。</p>
-<p>相比之下，浅拷贝是指创建一个新对象，然后将原始对象的内容逐个复制到新对象中。在浅拷贝中，只有最外层对象被复制，而内部的嵌套对象只是引用而已，没有被递归复制。这意味着原始对象和浅拷贝对象之间共享内部对象，修改其中一个对象的内部对象会影响到另一个对象。</p>
-<h3 id="-">移动语义</h3>
-<p>移动语义可以理解为转移所有权，之前的拷贝是对于别人的资源，自己重新分配一块内存存储复制过来的资源。而对于移动语义，类似于转让或者资源窃取的意思，对于那块资源，转为自己所拥有，别人不再拥有也不会再使用，通过 C++11 新增的移动语义可以省去很多拷贝负担，怎么利用移动语义呢，是通过移动构造函数。</p>
-<pre><code>class A
+int &amp;&amp;c = std::move(a); // ok 结果是将亡值属于右值的一种
+</code></pre><p>如果使用右值引用，那赋值符号右边的值需要是右值，可以使用 <code>std::move</code> 函数强制把左值转换为右值。</p>
+<h2 id="-">移动语义</h2>
+<p>移动语义可以理解为转移所有权，之前的拷贝是对于别人的资源，自己重新分配一块内存存储复制过来的资源。而对于移动语义，类似于转让或者资源窃取的意思，对于那块资源，转为自己所拥有，别人不再拥有也不会再使用，通过 C++11 新增的移动语义可以省去很多拷贝负担。那怎么利用移动语义呢，为了让自定义类支持移动语义，你需要显式定义移动构造函数‌和‌移动赋值运算符（如果需要重温移动构造的部分，请见文章《类与对象》）。而移动语义的基础是‌右值引用‌（<code>T&amp;&amp;</code>），其是专门用于绑定右值，它允许我们识别出那些“即将被销毁”的对象，从而安全地接管其资源。</p>
+<p>现有一个自定义的 <code>MyString</code> 类，我们简单实现了移动构造函数和一些必要的函数如下：</p>
+<pre><code>class MyString
 {
 public:
-    A(int size) : size_(size)
+
+    // 构造函数（字符数组）
+    MyString(const char* str) : length(strlen(str))
     {
-        data_ = new int[size];
+        data = new char[length + 1];
+        strcpy_s(data, length + 1, str);
     }
-    A(){}
-    A(const A&amp; a)
+
+    // 析构函数
+    ~MyString()
     {
-        size_ = a.size_;
-        data_ = new int[size_];
-        cout &lt;&lt; &quot;copy &quot; &lt;&lt; endl;
+        delete[] data;
+        data = nullptr;
     }
-    A(A&amp;&amp; a)
+
+    // 拷贝构造函数
+    MyString(const MyString&amp; other) : length(other.length)
     {
-        this-&gt;data_ = a.data_;
-        a.data_ = nullptr;
-        cout &lt;&lt; &quot;move &quot; &lt;&lt; endl;
+        data = new char[length + 1];
+        strcpy_s(data, length + 1, other.data);
+        std::cout &lt;&lt; &quot;Copy constructor called&quot; &lt;&lt; std::endl;
     }
-    ~A()
+
+    // 移动构造函数
+    MyString(MyString&amp;&amp; other) noexcept : data(other.data), length(other.length)
     {
-        if (data_ != nullptr)
-        {
-            delete[] data_;
-        }
+        other.data = nullptr;
+        other.length = 0;
+        std::cout &lt;&lt; &quot;Move constructor called&quot; &lt;&lt; std::endl;
     }
-    int *data_;
-    int size_;
+private:
+    char* data;
+    int length;
 };
-int main()
-{
-    A a(10);
-    A b = a;
-    A c = std::move(a); // 调用移动构造函数
-    return 0;
-}
-</code></pre><p> 如果不使用 <code>std::move()</code>，会有很大的拷贝代价，使用移动语义可以避免很多无用的拷贝，提供程序性能，C++ 所有的 STL 都实现了移动语义，方便使用。例如：</p>
-<pre><code>std::vector&lt;string&gt; vecs;
-...
-std::vector&lt;string&gt; vecm = std::move(vecs); // 免去很多拷贝
-</code></pre><p>注意：</p>
+</code></pre><p>通过 <code>MyString</code> 类，应该如何触发移动语义呢？</p>
+<p>一般有以下两种方式：</p>
+<ol>
+<li><p>编译器自动触发（最常见）</p>
+<p> 当使用‌临时对象‌（右值）初始化或赋值时，且禁用 NRVO 后（有关 NRVO 的详情可以参见文章《编译器对函数的值传递做了什么优化》），编译器会自动触发移动语义，调用移动构造函数。</p>
+<pre><code> MyString createMyString()
+ {
+     MyString a(&quot;Hello&quot;);
+     return a;
+ }
+
+ int main()
+ {
+     MyString c = createMyString(); // 禁用NRVO后，也将调用移动构造函数
+     return 0;
+ }
+</code></pre></li>
+<li><p>显式触发(<code>std::move</code>)</p>
+<p> 当你有一个具名左值对象，但确定之后不再使用它，想强制转移其资源时，使用 <code>std::move</code>，注意 <code>std::move</code> 本身不移动数据，它只是一个类型转换辅助函数，将左值强制转换为右值引用 (<code>static_cast&lt;T&amp;&amp;&gt;</code>)，从而告诉编译器“可以调用移动构造函数/赋值运算符”。</p>
+<pre><code> int main()
+ {
+     MyString a(10);
+     MyString b = a; // 调用拷贝构造函数
+     MyString d = std::move(a); // 调用移动构造函数
+     // 警告：此后 a 处于“有效但未指定”状态（data 为 nullptr）
+     // 不要再访问 a 的数据，但可以安全析构或重新赋值
+     return 0;
+ }
+</code></pre><p>如果不使用 <code>std::move()</code>，会有很大的拷贝代价，使用移动语义可以避免很多无用的拷贝，提供程序性能，自 C++11 起，STL 标准库中所有主要容器都实现了移动构造函数和移动赋值运算符，方便使用。例如：</p>
+</li>
+</ol>
+<pre><code>std::vector&lt;string&gt; vecs= {&quot;hello&quot;, &quot;world&quot;, &quot;cpp&quot;};
+std::vector&lt;string&gt; vecm = std::move(vecs); // // vecs 变空，vecm 直接拥有原来的资源，零拷贝
+</code></pre><p>你有没有经常听说过一句话，叫做 <code>std::move</code> 不移动任何东西，明明我们使用 <code>std::move</code> 后就将资源转移给新对象了，为什么还要说 <code>std::move</code> 不移动任何东西呢？</p>
+<p>究其原因是因为：</p>
 <ul>
-<li>移动语义仅针对于那些实现了移动构造函数的类的对象，对于那种基本类型 <code>int</code>、<code>float</code> 等没有任何优化作用，还是会拷贝，因为它们实现没有对应的移动构造函数。</li>
-<li>如果一个类没有实现移动构造函数，使用 <code>std::move</code> ‌<strong>不会</strong>‌触发移动语义，而是会‌<strong>退化为拷贝操作</strong>‌（调用拷贝构造函数或拷贝赋值运算符）。</li>
+<li>移动语义是“锁”‌：类通过提供移动构造函数或移动赋值运算符，声明自己支持“被移动”。如果类没有定义这些函数，编译器可能会回退到拷贝语义，或者禁止移动。</li>
+<li><code>std::move</code> 是“钥匙”‌：默认情况下，具名变量（即使它是临时对象的名字）在 C++ 中被视为左值。左值通常绑定到拷贝构造函数。<code>std::move</code> 的作用是将这个左值转换成右值，从而匹配到移动构造函数或移动赋值运算符这把“锁”。</li>
+<li><code>std::move</code> 仅仅是一个类型转换操作（Cast）。它不会改变对象的内部状态，也不会调用任何移动构造函数。真正的“移动”动作发生在后续的移动构造函数或移动赋值运算符执行时。</li>
 </ul>
-<h2 id="-">引用折叠</h2>
-<h3 id="-">万能引用</h3>
-<p>万能引用（Universal Reference）：</p>
+<p>简单来说，‌移动语义是一种资源管理的优化策略，而 <code>std::move</code> 是一个用于触发该策略的工具函数。</p>
+<p><strong>注意</strong>：</p>
 <ul>
-<li>发生类型推导（例如模板、<code>auto</code>）的时候，使用T&amp;&amp;类型表示为万能引用，否则表示右值引用。</li>
+<li>移动语义针对于那些实现了移动构造函数‌和‌移动赋值运算符的类对象，通过“窃取资源指针”避免深拷贝，性能提升巨大(<code>O(1)VSO(n)</code>)。对于基本类型如 <code>int</code>、<code>float</code> 等移动语义‌退化为拷贝‌，因为基本类型没有堆内存资源可“窃取”，其值本身就存储在栈上，移动和拷贝的操作完全一致（都是寄存器或栈内存赋值）。移动语义对基本类型确实没有性能优化，但语法上依然成立；</li>
+<li>如果一个类没有实现移动构造函数‌和‌移动赋值运算符，使用 <code>std::move</code> ‌<strong>不会</strong>‌触发移动语义，而是会‌<strong>退化为拷贝操作</strong>‌（调用拷贝构造函数或拷贝赋值运算符）；</li>
+<li>被 <code>std::move</code> 后的对象处于‌<strong>‌有效但未指定‌</strong>（valid but unspecified）‌的状态。通常意味着它不再拥有原本的资源（如指针变为 <code>nullptr</code>，容器变为空），但你仍然可以对其执行析构或重新赋值等操作，‌<strong>不应‌</strong>再访问其原有数据；</li>
+<li>如果对 <code>const</code> 对象使用 <code>std::move</code>，它会转换为 <code>const T&amp;&amp;</code>。由于移动构造函数通常接受非 <code>const</code> 右值引用（以便修改源对象），这往往会导致编译器选择拷贝构造函数代替移动构造函数，从而失去移动语义的性能优势。</li>
+</ul>
+<h2 id="-">完美转发</h2>
+<p>了解完美转发之前我们先理解万能引用和引用折叠的相关概念。</p>
+<h3 id="-">万能引用</h3>
+<ul>
+<li>发生类型推导（例如模板、<code>auto</code>）的时候，使用 <code>T&amp;&amp;</code> 类型表示为万能引用，否则表示右值引用。</li>
 <li>万能引用类型的形参既能匹配任意引用类型的左值、右值。</li>
 </ul>
-<p>也就是说编写模板函数时，只提供万能引用形参一个版本就可以匹配左值、右值，不必编写多个重载版本</p>
+<p>也就是说编写模板函数时，只提供万能引用形参一个版本就可以匹配左值、右值，不必编写多个重载版本，如下：</p>
 <pre><code>template&lt;class T&gt;
 void func(T&amp;&amp; t)
 {
     return;
 }
-</code></pre><p>所谓的万能引用是因为发生了类型推导，<code>T&amp;&amp;</code> 和 <code>auto&amp;&amp;</code> 的初始化过程中都会发生类型的推导</p>
-<h3 id="-">理解引用折叠</h3>
+</code></pre><p>所谓的万能引用是因为发生了类型推导，<code>T&amp;&amp;</code> 和 <code>auto&amp;&amp;</code> 的初始化过程中都会发生类型的推导。</p>
+<h3 id="-">引用折叠</h3>
 <ul>
-<li>在 C++ 中，“引用的引用”是非法的。像 <code>auto&amp; &amp;rx = x;</code>（注意两个 &amp; 之间有空格）这种直接定义引用的引用是不合法的，但是编译器在通过类型别名或模板参数推导等语境中，会间接定义出“引用的引用”，这时引用会形成“折叠”。</li>
-<li>引用折叠会发生在模板实例化、<code>auto</code> 类型推导、创建和运用 <code>typedef</code> 和别名声明、以及 <code>decltype</code> 语境中。</li>
+<li>在 C++ 中，“引用的引用”是非法的。像 <code>auto&amp; &amp;rx = x;</code>（注意两个 <code>&amp;</code> 之间有空格）这种直接定义引用的引用是不合法的，但是编译器在通过类型别名或模板参数推导等语境中，会间接定义出“引用的引用”，这时引用会形成“折叠”。</li>
+<li>引用折叠会发生在模板实例化、<code>auto</code> 类型推导、类型别名(<code>typedef/using</code>)、以及 <code>decltype</code> 语境中。</li>
 </ul>
 <h3 id="-">引用折叠规则</h3>
 <ol>
 <li><p>两条规则</p>
 <ul>
 <li>所有右值引用折叠到右值引用上仍然是一个右值引用。如 <code>X&amp;&amp; &amp;&amp;</code> 折叠为 <code>X&amp;&amp;</code>。</li>
-<li>所有的其他引用类型之间的折叠都将变成左值引用。如 <code>X&amp; &amp;</code>, <code>X&amp; &amp;&amp;</code>, <code>X&amp;&amp; &amp;</code> 折叠为 <code>X&amp;</code>。可见左值引用会传染，沾上一个左值引用就变左值引用了。根本原因：在一处声明为左值，就说明该对象为持久对象，编译器就必须保证此对象可靠（左值）。</li>
+<li>所有的其他引用类型之间的折叠都将变成左值引用。如 <code>X&amp; &amp;</code>, <code>X&amp; &amp;&amp;</code>, <code>X&amp;&amp; &amp;</code> 折叠为 <code>X&amp;</code>。可见左值引用会传染，沾上一个左值引用就变左值引用了。根本原因是在一处声明为左值，就说明该对象为持久对象，编译器就必须保证此对象可靠（左值）。</li>
 </ul>
 </li>
 <li><p>利用引用折叠进行万能引用初始化类型推导</p>
 <ul>
 <li>当万能引用（<code>T&amp;&amp; param</code>）绑定到左值时，由于万能引用也是一个引用，而左值只能绑定到左值引用。因此，<code>T</code> 会被推导为 <code>T&amp;</code> 类型。从而 <code>param</code> 的类型为 <code>T&amp; &amp;&amp;</code>，引用折叠后的类型为 <code>T&amp;</code>。</li>
-<li>当万能引用（<code>T&amp;&amp; param</code>）绑定到右值时，同理，右值只能绑定到右值引用上，故T会被推导为 <code>T</code> 类型。从而param的类型就是 <code>T&amp;&amp;</code>（右值引用）。</li>
+<li>当万能引用（<code>T&amp;&amp; param</code>）绑定到右值时，同理，右值只能绑定到右值引用上，故 <code>T</code> 会被推导为 <code>T</code> 类型。从而param的类型就是 <code>T&amp;&amp;</code>（右值引用）。</li>
 </ul>
 </li>
 </ol>
-<h2 id="std-forward">std::forward</h2>
+<h3 id="-">完美转发</h3>
 <p>当我们将一个右值引用传入函数时，他在实参中有了命名，所以继续往下传或者调用其他函数时，根据 C++ 标准的定义，这个参数变成了一个左值。那么他永远不会调用接下来函数的右值版本，这可能在一些情况下造成拷贝。</p>
-<p>为了解决这个问题 C++11 引入了完美转发，根据右值判断的推倒，调用 <code>forward</code> 传出的值，若原来是一个右值，那么他转出来就是一个右值，否则为一个左值。这样的处理就完美的转发了原有参数的左右值属性，不会造成一些不必要的拷贝。</p>
-<pre><code>#include &lt;iostream&gt;
-using namespace std;
-
-void PrintV(int &amp;t)
+<p>为了解决这个问题 C++11 引入了完美转发，根据右值判断的推倒，调用 <code>std::forward</code> 传出的值，若原来是一个右值，那么他转出来就是一个右值，否则为一个左值。这样的处理就完美的转发了原有参数的左右值属性(包括其CV限定符)，再根据左右值的属性，调用拷贝或者移动，这样不会造成一些不必要的性能损耗。</p>
+<pre><code>void PrintV(int &amp;t)
 {
     cout &lt;&lt; &quot;lvalue&quot; &lt;&lt; endl;
 }
@@ -4281,38 +4737,43 @@ void Test(T &amp;&amp;t)
 {
     PrintV(t);
     PrintV(std::forward&lt;T&gt;(t));
-
-    PrintV(std::move(t));
 }
 
 int main()
 {
-    Test(1); // lvalue rvalue rvalue
+    Test(1); // lvalue rvalue
     int a = 1;
-    Test(a);                       // lvalue lvalue rvalue
-    Test(std::forward&lt;int&gt;(a));    // lvalue rvalue rvalue
-    Test(std::forward&lt;int &amp;&gt;(a));  // lvalue lvalue rvalue
-    Test(std::forward&lt;int &amp;&amp;&gt;(a)); // lvalue rvalue rvalue
+    Test(a);                       // lvalue lvalue
+    Test(std::move(a));            // lvalue rvalue
     return 0;
 }
 </code></pre><p>分析如下：</p>
 <ul>
-<li><code>Test(1)</code>：<code>1</code> 是右值，模板中<code>T &amp;&amp;t</code> 这种为万能引用，右值 <code>1</code> 传到 <code>Test</code> 函数中变成了右值引用（具名的右值引用是左值），但是调用 <code>PrintV()</code> 时候，t变成了左值，因为它变成了一个拥有名字的变量，所以打印 <code>lvalue</code>，而 <code>PrintV(std::forward(t))</code> 时候，会进行完美转发，按照原来的类型转发，所以打印 <code>rvalue</code>，<code>PrintV(std::move(t))</code> 毫无疑问会打印 <code>rvalue</code>。</li>
-<li><code>Test(a)</code>：<code>a</code> 是左值，模板中 <code>T &amp;&amp;t</code> 这种为万能引用，左值 <code>a</code> 传到 <code>Test</code> 函数中变成了左值引用，所以有代码中打印。
-<code>Test(std::forward(a))</code>：转发为左值还是右值，依赖于 <code>T</code>，<code>T</code> 是左值那就转发为左值，T是右值那就转发为右值。</li>
+<li><code>Test(1)</code> 和 <code>Test(std::move(a))</code>：传入 <code>Test</code> 的实参是右值，模板中<code>T &amp;&amp;t</code> 为万能引用，根据引用折叠推导规则，<code>T</code> 被推导为 <code>int</code>（非引用），形参 <code>t</code> 的类型变为 <code>int&amp;&amp;</code>，在 <code>Test</code> 函数体内，当你写下 <code>t</code> 时，你是在使用一个‌拥有名字的变量‌，根据“具名即左值”规则，表达式 <code>t</code> 的值类别是‌左值（lvalue）‌，因此，当你调用 <code>PrintV(t)</code> 时，编译器看到的是左值，所以打印 <code>lvalue</code>。而调用 <code>PrintV(std::forward(t))</code> 时候，会进行完美转发，按照原来的类型转发，<code>std::forward&lt;int&gt;</code> 执行 <code>static_cast&lt;int &amp;&amp;&gt;(t)</code>，折叠后返回 <code>‌int&amp;&amp;</code>‌（右值引用）所以打印 <code>rvalue</code>。</li>
+<li><code>Test(a)</code>：传入 <code>Test</code> 的实参是左值，模板中<code>T &amp;&amp;t</code> 为万能引用，根据引用折叠推导规则，<code>T</code> 被推导为 <code>int&amp;</code>（左值引用），形参 <code>t</code> 的类型折叠为 <code>int&amp;</code>，在 <code>Test</code> 函数体内，当你写下 <code>t</code> 时，你是在使用一个‌拥有名字的变量‌，根据“具名即左值”规则，表达式 <code>t</code> 的值类别是‌左值（lvalue）‌，因此，当你调用 <code>PrintV(t)</code> 时，编译器看到的是左值，所以打印 <code>lvalue</code>。而调用 <code>PrintV(std::forward(t))</code> 时候，会进行完美转发，按照原来的类型转发，<code>std::forward&lt;int&amp;&gt;</code> 执行 <code>static_cast&lt;int&amp; &amp;&amp;&gt;(t)</code>，折叠后返回 <code>‌int&amp;</code>‌（左值引用），所以打印 <code>lvalue</code>。</li>
 </ul>
-<p>结论</p>
-<p><code>std::forward</code> 会根据传递给 <code>Test</code> 函数实参（注意，不是形参）的左/右值类型进行转发。当传给 <code>Test</code> 函数左值实参时，<code>forward</code> 返回左值引用，并将该左值转发给 <code>PrintV</code> 函数。而当传入 <code>Test</code> 的实参为右值时，<code>forward</code> 返回右值引用，并将该右值转发给 <code>PrintV</code> 函数。</p>
+<p>结论：
+<code>std::forward</code> 会根据传递给 <code>Test</code> 函数实参的左/右值类型进行转发。当传给 <code>Test</code> 函数左值实参时，<code>std::forward</code> 返回左值引用，并将该左值转发给 <code>PrintV(std::forward&lt;T&gt;(t))</code> 函数。而当传入 <code>Test</code> 的实参为右值时，<code>std::forward</code> 返回右值引用，并将该右值转发给 <code>PrintV(std::forward&lt;T&gt;(t))</code> 函数。</p>
+<p>你是不是又听说过一句话，叫做 <code>std::forward</code> 不转发任何东西？</p>
+<p><code>std::forward</code> 本身不进行任何数据移动或拷贝，它仅仅是一个编译期的类型转换工具（Cast）‌，它的本质也是 <code>static_cast</code>。它只是告诉编译器：“请把在这个表达式中的这个变量，当作某种引用类型（左值或右值）来处理”。真正执行资源转移（移动）或复制（拷贝）动作的，是‌被调用的目标函数‌（如移动/拷贝构造函数或移动/拷贝赋值运算符），而不是 <code>std::forward</code> 本身。</p>
+<p><strong>注意</strong>：</p>
+<ul>
+<li><code>std::forward</code> 仅在函数模板参数为‌万能引用‌（<code>T&amp;&amp;</code> 且发生类型推导）时才有意义，若参数是普通右值引用（如 <code>void f(int&amp;&amp;)</code>），应直接使用 <code>std::move</code>，因为此时无需保留左值语义；</li>
+<li>必须显式指定模板参数 <code>T</code>，写作 <code>std::forward&lt;T&gt;(arg)</code>，<code>std::forward(arg)</code> 会导致编译错误，因为编译器无法自动推导 <code>std::forward</code> 的模板参数；</li>
+<li>严禁多次转发同一参数，如果实参是右值，<code>std::forward&lt;T&gt;(arg)</code> 会将其转换为右值引用，可能触发目标函数的‌移动语义‌，移动后，源对象（arg 绑定的对象）处于‌有效但未指定‌的状态（如指针置空）；</li>
+<li><code>std::forward</code> 旨在转发‌传入的参数‌，对于函数内部创建的局部变量，若希望移动其资源，应直接使用 <code>std::move(local_var)</code>；</li>
+<li>始终使用推导出的模板参数 <code>T</code>，即 <code>std::forward&lt;T&gt;(arg)</code>。<code>std::forward&lt;int&gt;(arg)</code>，若 <code>T</code> 实际推导为 <code>int&amp;</code>（左值），硬编码 <code>int</code> 会强制转为右值，导致左值实参被意外移动。</li>
+</ul>
 <h2 id="-">总结</h2>
-<p>两者比较</p>
+<p><strong>两者比较</strong></p>
 <ol>
-<li><code>move</code> 和 <code>forward</code> 都是仅仅执行强制类型转换的函数。<code>std::move</code> 无条件地将实参强制转换成右值。而 <code>std::forward</code> 则仅在某个特定条件满足时（传入 <code>func</code> 的实参是右值时）才执行强制转换。</li>
-<li><code>std::move</code> 并不进行任何移动，<code>std::forward</code> 也不进行任何转发。这两者在运行期都无所作为。它们不会生成任何可执行代码，连一个字节都不会生成。</li>
+<li><code>std::move</code> 和 <code>std::forward</code> 都是仅仅执行强制类型转换的函数。<code>std::move</code> 无条件地将实参强制转换成右值。而 <code>std::forward</code> 根据模板参数 <code>T</code> 的记录，有条件地将具名变量转换回其原始的值类别（左值或右值）。</li>
+<li><code>std::move</code> 并不进行任何移动，<code>std::forward</code> 也不进行任何转发。这两者都是编译期的类型转换工具，在运行期都无所作为，它们不会生成任何可执行代码，不会修改内存，不会调用构造函数，不会移动指针。</li>
 </ol>
-<p>使用时机</p>
+<p><strong>使用时机</strong></p>
 <ol>
 <li>针对右值引用的最后一次使用实施 <code>std::move</code>，针对万能引用的最后一次使用实施 <code>std::forward</code>。</li>
-<li>在按值返回的函数中，如果返回的是一个绑定到右值引用或万能引用的对象时，可以实施 <code>std::move</code> 或 <code>std::forward</code>。因为如果原始对象是一个右值，它的值就应当被移动到返回值上，而如果是左值，就必须通过复制构造出副本作为返回值。</li>
+<li>在按值返回局部对象时，‌绝对不要‌使用 <code>std::move</code> 或 <code>std::forward</code>。‌直接返回‌是让编译器优化（NRVO）的唯一正确途径。手动移动不仅多余，还会降低性能。</li>
 </ol>
 <h1 id="std-future-async">std中future与async</h1>
 <h2 id="-">概念</h2>
@@ -4382,217 +4843,7 @@ std::cout &lt;&lt; ret &lt;&lt; std::endl;
 <li>虽然 <code>std::future</code> 提供了异常处理机制，但需要注意的是，一旦 <code>std::future::get()</code> 函数重新抛出异常，该异常需要在调用get()的线程中进行捕获和处理。这意味着需要在主线程和其他线程中设置适当的异常处理策略，以确保程序的稳定性和健壮性。</li>
 </ul>
 <p><strong>注：Qt拥有QtConcurrent和QFuture结合实现异步，详情参见Qt帮助文档</strong></p>
-<h1 id="-">智能指针</h1>
-<h2 id="c-11-">C++11 智能指针</h2>
-<h3 id="-">什么是智能指针</h3>
-<p>从比较简单的层面来看，智能指针是 RAII(Resource Acquisition Is Initialization，资源获取即初始化)机制对普通指针进行的一层封装。这样使得智能指针的行为动作像一个指针，本质上却是一个对象，这样可以方便管理一个对象的生命周期。</p>
-<p>在 C++ 中，智能指针一共定义了 4 种：</p>
-<pre><code>auto_ptr
-unique_ptr
-shared_ptr 
-weak_ptr
-</code></pre><p>其中，<code>auto_ptr</code> 在 C++11 已被摒弃，在 C++17 中已经移除不可用。</p>
-<h3 id="-">原始指针的问题</h3>
-<p>原始指针的问题大家都懂，就是如果忘记删除，或者删除的情况没有考虑清楚，容易造成悬挂指针(dangling pointer)或者说野指针(wild pointer)。</p>
-<p>我们看个简单的例子</p>
-<pre><code>objtype *p = new objtype();
-p-&gt;func();
-delete p;
-</code></pre><p>上面的代码结构是我们经常看到的。里面的问题主要有以下两点：</p>
-<ol>
-<li>代码的最后，忘记执行 <code>delete p</code> 的操作。</li>
-<li>第一点其实还好，比较容易发现也比较容易解决。比较麻烦的是，如果 <code>func()</code> 中有异常，<code>delete p</code> 语句执行不到，这就很难办。有的同学说可以在 <code>func</code> 中进行删除操作，理论上是可以这么做，实际操作起来，会非常麻烦也非常复杂。</li>
-</ol>
-<p>此时，智能指针就可以方便我们控制指针对象的生命周期。在智能指针中，一个对象什么情况下被析构或被删除，是由指针本身决定的，并不需要用户进行手动管理，是不是瞬间觉得幸福感提升了一大截，有点幸福来得太突然的意思，终于不用我自己手动删除指针了。</p>
-<h3 id="unique_ptr">unique_ptr</h3>
-<p><code>unique_ptr</code> 是独享被管理对象指针所有权(owership)的智能指针。<code>unique_ptr</code> 对象封装一个原始指针，并负责其生命周期。当该对象被销毁时，会在其析构函数中删除关联的原始指针。创建 <code>unique_ptr</code>:</p>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;string&gt;
-#include &lt;memory&gt;
-using namespace std;
-
-void f1() 
-{
-    unique_ptr&lt;int&gt; p(new int(5));
-    unique_ptr&lt;int&gt; p2 = make_unique&lt;int&gt;(5); // 推荐使用
-    cout&lt;&lt;*p&lt;&lt;endl;
-}
-</code></pre><p>上面的代码就创建了一个 <code>unique_ptr</code>。需要注意的是，<code>unique_ptr</code> 没有复制构造函数，不支持普通的拷贝和赋值操作。因为 <code>unique_ptr</code> 独享被管理对象指针所有权，当 <code>p2</code>, <code>p3</code> 失去 <code>p</code> 的所有权时会释放对应资源，此时会执行两次 <code>delete p</code> 的操作。</p>
-<pre><code>void f1()
-{
-    unique_ptr&lt;int&gt; p = make_unique&lt;int&gt;(5);
-    cout&lt;&lt;*p&lt;&lt;endl;
-    unique_ptr&lt;int&gt; p2(p);
-    unique_ptr&lt;int&gt; p3 = p;
-}
-</code></pre><p> 对于 <code>p2</code>,<code>p3</code> 对应的行，IDE会提示报错</p>
-<pre><code>无法引用 函数 &quot;std::__1::unique_ptr&lt;_Tp, _Dp&gt;::unique_ptr(const std::__1::unique_ptr&lt;int, std::__1::default_delete&lt;int&gt;&gt; &amp;) [其中 _Tp=int, _Dp=std::__1::default_delete&lt;int&gt;]&quot; (已隐式声明) -- 它是已删除的函数
-</code></pre><p><code>unique_ptr</code> 虽然不支持普通的拷贝和赋值操作，但却可以将所有权进行转移，使用 <code>std::move</code> 方法即可。</p>
-<pre><code>void f1()
-{
-    unique_ptr&lt;int&gt; p = make_unique&lt;int&gt;(5);
-    unique_ptr&lt;int&gt; p2 = std::move(p);
-    //error，此时p指针为空: cout&lt;&lt;*p&lt;&lt;endl; 
-    cout&lt;&lt;*p2&lt;&lt;endl;
-}
-</code></pre><p><code>unique</code> 最常见的使用场景，就是替代原始指针，为动态申请的资源提供异常安全保证。</p>
-<pre><code>objtype *p = new objtype();
-p-&gt;func();
-delete p;
-</code></pre><p>前面我们分析了这部分代码的问题，如果我们修改一下</p>
-<pre><code>unique_ptr&lt;objtype&gt; p(new objtype());
-p-&gt;func();
-</code></pre><p>此时我们只要 <code>unique_ptr</code> 创建成功，<code>unique_ptr</code> 对应的析构函数都能保证被调用，从而保证申请的动态资源能被释放掉。</p>
-<p><code>unique_ptr</code> 支持自定义删除函数</p>
-<pre><code>auto deleter = [&amp;](int* p) 
-{
-    delete p;
-};
-std::unique_ptr&lt;int, decltype(deleter)&gt; destroyPtr(new int(0), deleter);
-</code></pre><h3 id="shared_ptr">shared_ptr</h3>
-<p>我们提到的智能指针，很大程度上就是指的 <code>shared_ptr</code>，<code>shared_ptr</code> 也在实际应用中广泛使用。它的原理是使用引用计数实现对同一块内存的多个引用。在最后一个引用被释放时，指向的内存才释放，这也是和 <code>unique_ptr</code> 最大的区别。当对象的所有权需要共享(share)时，<code>share_ptr</code> 可以进行赋值拷贝。
-<code>shared_ptr</code> 使用引用计数，每一个 <code>shared_ptr</code> 的拷贝都指向相同的内存。每使用他一次，内部的引用计数加1，每析构一次，内部的引用计数减1，减为 <code>0</code> 时，删除所指向的堆内存。</p>
-<pre><code>std::shared_ptr&lt;int&gt; p4 = new int(1);
-std::shared_ptr&lt;int&gt; p = make_shared&lt;int&gt;(1); //推荐
-</code></pre><p>上面这种写法是错误的，因为右边得到的是一个原始指针，前面我们讲过 <code>shared_ptr</code> 本质是一个对象，将一个指针赋值给一个对象是不行的。</p>
-<pre><code>void f2() 
-{
-    shared_ptr&lt;int&gt; p = make_shared&lt;int&gt;(1);
-    shared_ptr&lt;int&gt; p2(p);
-    shared_ptr&lt;int&gt; p3 = p;
-}
-</code></pre><p>以上写法都是可以的</p>
-<pre><code>void f2() 
-{
-    shared_ptr&lt;int&gt; p = make_shared&lt;int&gt;(1);
-    int *p2 = p.get();
-    cout&lt;&lt;*p2&lt;&lt;endl;
-}
-</code></pre><p>上面的写法，可以获取 <code>shared_ptr</code> 的原始指针。</p>
-<p>使用注意点：</p>
-<ol>
-<li><p>不能将一个原始指针初始化多个 <code>shared_ptr</code></p>
-<pre><code> void f2() 
- {
-      int *p0 = new int(1);
-      shared_ptr&lt;int&gt; p1(p0);
-      shared_ptr&lt;int&gt; p2(p0);
-      cout&lt;&lt;*p1&lt;&lt;endl;
- }
-</code></pre><p> 上面代码就会报错。原因也很简单，因为 <code>p1</code>,<code>p2</code> 都要进行析构删除，这样会造成原始指针 <code>p0</code> 被删除两次，自然要报错。</p>
-</li>
-<li><p>循环引用问题
- <code>shared_ptr</code> 最大的坑就是循环引用。引用网络上的一个例子：</p>
-<pre><code> struct Father
- {
-      shared_ptr&lt;Son&gt; son_;
- };
-
- struct Son
- {
-      shared_ptr&lt;Father&gt; father_;
- };
-
- int main()
- {
-     auto father = make_shared&lt;Father&gt;();
-     auto son = make_shared&lt;Son&gt;();
-
-     father-&gt;son_ = son;
-     son-&gt;father_ = father;
-
-     return 0;
- }
-</code></pre><p> 该部分代码会有内存泄漏问题。原因是：</p>
-<ul>
-<li><code>main</code> 函数退出之前，<code>Father</code> 和 <code>Son</code> 对象的引用计数都是 <code>2</code>。</li>
-<li><code>son</code> 指针销毁，这时 <code>Son</code> 对象的引用计数是 <code>1</code>。</li>
-<li><code>father</code> 指针销毁，这时 <code>Father</code> 对象的引用计数是 <code>1</code>。</li>
-<li>由于 <code>Father</code> 对象和 <code>Son</code> 对象的引用计数都是 <code>1</code>，这两个对象都不会被销毁，从而发生内存泄露。</li>
-</ul>
-</li>
-<li><p>为避免循环引用导致的内存泄露，就需要使用 <code>weak_ptr</code>。</p>
-</li>
-</ol>
-<h3 id="weak_ptr">weak_ptr</h3>
-<p><code>weak_ptr</code> 并不拥有其指向的对象，也就是说，让 <code>weak_ptr</code> 指向 <code>shared_ptr</code> 所指向对象，对象的引用计数并不会增加。
-使用 <code>weak_ptr</code> 就能解决前面提到的循环引用的问题，方法很简单，只要让 <code>Son</code> 或者 <code>Father</code> 包含的 <code>shared_ptr</code> 改成 <code>weak_ptr</code> 就可以了。</p>
-<pre><code>struct Father
-{
-    shared_ptr&lt;Son&gt; son_;
-};
-
-struct Son
-{
-    weak_ptr&lt;Father&gt; father_;
-};
-
-int main()
-{
-    auto father = make_shared&lt;Father&gt;();
-    auto son = make_shared&lt;Son&gt;();
-
-     father-&gt;son_ = son;
-     son-&gt;father_ = father;
-
-     return 0;
-}
-</code></pre><ol>
-<li><code>main</code> 函数退出前，<code>Son</code> 对象的引用计数是 <code>2</code>，而 <code>Father</code> 的引用计数是 <code>1</code>。</li>
-<li><code>son</code> 指针销毁，<code>Son</code> 对象的引用计数变成 <code>1</code>。</li>
-<li><code>father</code> 指针销毁，<code>Father</code> 对象的引用计数变成 <code>0</code>，导致 <code>Father</code> 对象析构，<code>Father</code> 对象的析构会导致它包含的 <code>son_</code> 指针被销毁，这时 <code>Son</code> 对象的引用计数变成 <code>0</code>，所以 <code>Son</code> 对象也会被析构。</li>
-</ol>
-<p><strong>构造与初始化</strong></p>
-<pre><code>auto shared = std::make_shared&lt;int&gt;(42);
-std::weak_ptr&lt;int&gt; weak(shared);  // 通过 shared_ptr 构造 weak_ptr
-</code></pre><p> <strong>安全访问资源</strong></p>
-<pre><code>if (auto temp_shared = weak.lock()) { // 尝试提升为 shared_ptr
-    std::cout &lt;&lt; *temp_shared;        // 资源存在时安全访问
-} else {
-    std::cout &lt;&lt; &quot;资源已释放&quot;;
-}
-</code></pre><p>必须通过 <code>lock()</code> 获取临时 <code>shared_ptr</code> 后访问，<code>weak_ptr</code> 没有重载 -&gt; 和 * 操作符。并且应尽早 <code>lock()</code> 并持有返回的 <code>shared_ptr</code>并对返回的 <code>shared_ptr</code> 判空后再操作。避免长期持有的<code>weak_ptr</code>失效。</p>
-<p><strong>最佳实践</strong></p>
-<ol>
-<li><p>​始终通过 <code>lock()</code> 访问资源</p>
-<ul>
-<li>避免使用 <code>expired()</code> 单独判断有效性。</li>
-<li>对返回的 <code>shared_ptr</code> 判空后再操作。</li>
-</ul>
-</li>
-<li><p>​优先使用 <code>make_shared</code></p>
-<ul>
-<li>避免裸指针初始化导致的分离内存分配。</li>
-</ul>
-</li>
-<li><p>避免跨线程传递 <code>weak_ptr</code> 的时效性假设
-=</p>
-<ul>
-<li>即使 <code>lock()</code> 成功，资源可能在后续代码中失效，需设计重试机制。</li>
-</ul>
-</li>
-<li><p>限制生命周期</p>
-<pre><code> {
-     auto shared = std::make_shared&lt;Resource&gt;();
-     std::weak_ptr&lt;Resource&gt; weak(shared);
-     // 确保 shared 存活期间使用 weak
- } // shared 析构后，weak 自动失效
-</code></pre></li>
-</ol>
-<h3 id="-">总结</h3>
-<p>我们该如何选择智能指针：</p>
-<ol>
-<li><p>如果程序要使用多个指向同一个对象的指针，应选择 <code>shared_ptr</code>。这样的情况包括:</p>
-<ul>
-<li>有一个指针数组，并使用一些辅助指针来标示特定的元素，如最大的元素和最小的元素；</li>
-<li>两个对象包含都指向第三个对象的指针；</li>
-<li>STL 容器包含指针。很多 STL 算法都支持复制和赋值操作，这些操作可用于 <code>shared_ptr</code>，但不能用于 <code>unique_ptr</code>（编译器发出 warning）和 <code>auto_ptr</code>（行为不确定）。如果你的编译器没有提供 <code>shared_ptr</code>，可使用 <code>Boost</code> 库提供的 <code>shared_ptr</code>。</li>
-</ul>
-</li>
-<li><p>如果程序不需要多个指向同一个对象的指针，则可使用 <code>unique_ptr</code>。如果函数使用 <code>new</code> 分配内存，并返还指向该内存的指针，将其返回类型声明为 <code>unique_ptr</code> 是不错的选择。这样，所有权转让给接受返回值的 <code>unique_ptr</code>，而该智能指针将负责调用 <code>delete</code>。</p>
-</li>
-</ol>
-<h2 id="qt-">Qt 智能指针</h2>
+<h1 id="qt-">Qt 智能指针</h1>
 <h3 id="qpointer">QPointer</h3>
 <p><code>QPointer</code> 是一个被保护的指针，行为类似于普通的 C++ 指针 <code>T *</code>，会在被引用的对象被销毁时自动清除,不像普通的 C++ 指针，在这种情况下会成为“悬空指针”;</p>
 <p>析构时不会自动销毁所指向的对象;</p>
@@ -4677,6 +4928,297 @@ QWeakPointer&lt;Parent&gt; m_pParent;
 <li><code>QScopedPointer</code>：作用域指针，用于自动释放局部对象的内存</li>
 <li><code>QPointer</code>：安全指针，用于指向可能会被释放的对象，防止悬挂指针</li>
 </ul>
+<h1 id="-">智能指针</h1>
+<h2 id="c-11-">C++11 智能指针</h2>
+<h3 id="-">原始指针的问题</h3>
+<p>原始指针的问题大家都懂，就是如果忘记删除，或者删除的情况没有考虑清楚，容易造成悬挂指针(dangling pointer)或者说野指针(wild pointer)。我们看个简单的例子：</p>
+<pre><code>objtype *p = new objtype();
+p-&gt;func();
+delete p;
+</code></pre><p>上面的代码结构是我们经常看到的。里面的问题主要有以下两点：</p>
+<ol>
+<li>代码的最后，忘记执行 <code>delete p</code> 的操作。</li>
+<li>第一点其实还好，比较容易发现也比较容易解决。比较麻烦的是，如果 <code>func()</code> 中有异常，<code>delete p</code> 语句执行不到，这就很难办。有的同学说可以在 <code>func()</code> 中进行删除操作，理论上是可以这么做，但实际操作起来，会非常麻烦也非常复杂。</li>
+</ol>
+<p>此时，使用智能指针就可以方便我们控制指针对象的生命周期。在智能指针中，一个对象什么情况下被析构或被删除，是由指针本身决定的，并不需要用户进行手动管理，是不是瞬间觉得幸福感提升了一大截，有点幸福来得太突然的意思，终于不用我自己手动释放指针了。</p>
+<h3 id="-">什么是智能指针</h3>
+<p>从比较简单的层面来看，智能指针是RAII(Resource Acquisition Is Initialization，资源获取即初始化)机制对普通指针进行的一层封装。这样使得智能指针的行为动作像一个指针，本质上却是一个对象，这样可以方便管理一个对象的生命周期。</p>
+<p>在 C++ 中，智能指针一共定义了四种：</p>
+<pre><code>std::auto_ptr
+std::unique_ptr
+std::shared_ptr 
+std::weak_ptr
+</code></pre><h3 id="std-auto_ptr">std::auto_ptr</h3>
+<p>其中，<code>std::auto_ptr</code> 在C++11已被废弃，但仍可使用（编译时会警告），在C++17中已经移除不可用，无法编译。究其原因是因为<code>std::auto_ptr</code> 有严重的所有权转移语义缺陷，请看如下示例：</p>
+<pre><code>std::auto_ptr&lt;int&gt; p1(new int(5));
+std::auto_ptr&lt;int&gt; p2 = p1;  // p1 现在变为 nullptr，p1 不再拥有对象，如果再使用 p1 会导致未定义行为
+</code></pre><p>这种拷贝即转移的行为违反了常规的拷贝语义，非常容易引发 bug。它使用移动语义的方式很原始，在 C++11 引入真正的移动语义（<code>std::move</code>）后，<code>std::auto_ptr</code> 彻底失去存在价值。</p>
+<h3 id="std-unique_ptr">std::unique_ptr</h3>
+<p><code>std::unique_ptr</code> 是独享被管理对象指针所有权(owership)的智能指针。<code>std::unique_ptr</code> 对象封装一个原始指针，并负责其生命周期。当该对象被销毁时，会在其析构函数中删除关联的原始指针。创建 <code>std::unique_ptr</code> 示例如下:</p>
+<pre><code>#include &lt;iostream&gt;
+
+int main() 
+{
+    std::unique_ptr&lt;int&gt; p1(new int(5));
+    std::unique_ptr&lt;int&gt; p2 = std::make_unique&lt;int&gt;(5); // 推荐使用
+    std::cout &lt;&lt; *p1 &lt;&lt; *p2 &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre><p><code>std::unique_ptr</code> 的拷贝构造函数和拷贝赋值运算符被显式删除（<code>= delete</code>），因为它独占所有权，不允许复制，以下示例会报错：</p>
+<pre><code>int main()
+{
+    std::unique_ptr&lt;int&gt; p = std::make_unique&lt;int&gt;(5);
+    std::cout&lt;&lt; *p&lt;&lt; std::endl;
+    std::unique_ptr&lt;int&gt; p2(p);
+    std::unique_ptr&lt;int&gt; p3 = p;
+    return 0;
+}
+</code></pre><p> 对于 <code>p2</code>,<code>p3</code> 对应的行，IDE会提示报错</p>
+<pre><code>error C2280: “std::unique_ptr&lt;int,std::default_delete&lt;int&gt;&gt;::unique_ptr(const std::unique_ptr&lt;int,std::default_delete&lt;int&gt;&gt; &amp;)”: 尝试引用已删除的函数
+</code></pre><p>虽然不支持普通的拷贝和赋值操作，但却可以将所有权进行转移，使用 <code>std::move</code> 方法即可，如下示例：</p>
+<pre><code>int main()
+{
+    std::unique_ptr&lt;int&gt; p = std::make_unique&lt;int&gt;(5);
+    std::unique_ptr&lt;int&gt; p2 = std::move(p);
+    // std::cout&lt;&lt; *p &lt;&lt; std::endl;  //此时p指针为nullptr, 解引用空指针,未定义行为
+    std::cout&lt;&lt; *p2&lt;&lt; std::endl;
+    return 0;
+}
+</code></pre><p><code>std::unique_ptr</code> 最常见的使用场景，就是替代原始指针，为动态申请的资源提供异常安全保证。</p>
+<pre><code>std::unique_ptr&lt;objtype&gt; p = std::make_unique&lt;objtype&gt;();
+p-&gt;func();
+</code></pre><p>此时我们只要 <code>std::unique_ptr</code> 创建成功，<code>std::unique_ptr</code> 对应的析构函数都能保证被调用，即使发生异常，析构函数也会在栈展开（stack unwinding）过程中被调用，从而保证申请的动态资源能被释放掉。</p>
+<h3 id="std-shared_ptr">std::shared_ptr</h3>
+<p>我们提到的智能指针，很大程度上就是指的 <code>std::shared_ptr</code>，<code>std::shared_ptr</code> 也在实际应用中广泛使用。它的原理是使用强引用计数（关于引用计数，文章后续会详细讲解）实现对同一块内存的多个引用。在最后一个引用被释放时，指向的内存才释放，这也是和 <code>std::unique_ptr</code> 最大的区别。当对象的所有权需要共享(share)时，<code>std::shared_ptr</code> 可以进行赋值拷贝。<code>std::shared_ptr</code> 使用强引用计数，每一个 <code>std::shared_ptr</code> 的拷贝都指向相同的内存。每使用他一次，内部的强引用计数加1，每析构一次，内部的强引用计数减1，当减为0时，释放所指向的堆内存。创建 <code>std::shared_ptr</code> 示例如下：</p>
+<pre><code>int main()
+{
+    std::shared_ptr&lt;int&gt; p1(new int(1));
+    std::shared_ptr&lt;int&gt; p2 = std::make_shared&lt;int&gt;(1); // 推荐使用
+    std::cout &lt;&lt; *p1 &lt;&lt; *p2 &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre><p>由于<code>std::shared_ptr</code>是共享的，所以跟<code>std::unique_ptr</code>不同，它可以进行赋值拷贝，只是强引用计数会增加1。也可以使用移动语义（<code>std::move</code>），引用计数不会增加。以下代码可以正常使用：</p>
+<pre><code>int main()
+{
+    std::shared_ptr&lt;int&gt; p = std::make_shared&lt;int&gt;(1);
+    std::shared_ptr&lt;int&gt; p2(p);
+    std::shared_ptr&lt;int&gt; p3 = p;
+    std::shared_ptr&lt;int&gt; p4 = std::move(p); // 移动语义, 引用计数不会增加, 此时p指针为nullptr
+    std::cout &lt;&lt; *p2 &lt;&lt; *p3 &lt;&lt; *p4 &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre><p><strong>使用注意点</strong>：</p>
+<ol>
+<li><p>不能将一个原始指针初始化多个 <code>std::shared_ptr</code>，请看以下示例：</p>
+<pre><code> int main()
+ {
+     int* p = new int(1);
+     std::shared_ptr&lt;int&gt; p1(p);
+     std::shared_ptr&lt;int&gt; p2(p);
+     std::cout &lt;&lt; *p &lt;&lt; *p1 &lt;&lt; *p2 &lt;&lt; std::endl;
+     return 0;
+ }
+</code></pre><p> 上面代码运行后会崩溃，原因也很简单，因为 <code>p1</code>,<code>p2</code> 都要进行析构删除，这样会造成原始指针 <code>p</code> 被双重释放。</p>
+</li>
+<li><p>循环引用问题
+ <code>std::shared_ptr</code> 最大的坑就是循环引用。请看如下例子：</p>
+<pre><code> struct Son;
+ struct Father
+ {
+     std::shared_ptr&lt;Son&gt; son;
+ };
+
+ struct Son
+ {
+     std::shared_ptr&lt;Father&gt; father;
+ };
+
+ int main()
+ {
+     auto father = std::make_shared&lt;Father&gt;();
+     auto son = std::make_shared&lt;Son&gt;();
+
+     father-&gt;son = son;
+     son-&gt;father = father;
+
+     return 0;
+ }
+</code></pre><p> 该部分代码会有内存泄漏问题。原因是：</p>
+<ul>
+<li><code>main</code> 函数退出之前，<code>Father</code> 和 <code>Son</code> 对象的强引用计数都是 <code>2</code>。</li>
+<li><code>son</code> 指针销毁，这时 <code>Son</code> 对象的强引用计数是 <code>1</code>。</li>
+<li><code>father</code> 指针销毁，这时 <code>Father</code> 对象的强引用计数是 <code>1</code>。</li>
+<li>由于 <code>Father</code> 对象和 <code>Son</code> 对象的强引用计数都是 <code>1</code>，这两个对象都不会被销毁，从而发生内存泄露。</li>
+</ul>
+</li>
+<li><p>为避免循环引用导致的内存泄露，就需要使用到下一节提到的<code>std::weak_ptr</code>。</p>
+</li>
+</ol>
+<h3 id="std-weak_ptr">std::weak_ptr</h3>
+<p><code>std::weak_ptr</code> 是 C++11 引入的一种智能指针，用于解决 <code>std::shared_ptr</code> 的循环引用问题。它是对 <code>std::shared_ptr</code> 所管理对象的非拥有型（弱引用）观察者。也就是说，让 <code>std::weak_ptr</code> 指向 <code>std::shared_ptr</code> 所指向对象，对象的强引用计数并不会增加，而是增加弱引用计数。构造与初始化示例如下：</p>
+<pre><code>auto shared = std::make_shared&lt;int&gt;(42);
+std::weak_ptr&lt;int&gt; weak(shared);  // 通过 shared_ptr 构造 weak_ptr
+</code></pre><p>访问时必须通过 <code>lock()</code> 获取临时 <code>std::shared_ptr</code> 后访问，<code>std::weak_ptr</code> 没有重载 <code>-&gt;</code> 和 <code>*</code> 操作符。并且应尽早 <code>lock()</code> 并持有返回的 <code>std::shared_ptr</code>并对返回的 <code>std::shared_ptr</code> 判空后再操作。避免长期持有的<code>std::weak_ptr</code>失效。因为 <code>std::weak_ptr</code> 指向的对象可能在任意时刻被销毁。如果直接解引用，会导致未定义行为。</p>
+<pre><code>int main()
+{
+    auto p = std::make_shared&lt;int&gt;(42);
+    std::weak_ptr&lt;int&gt; p1(p);  // 通过 shared_ptr 构造 weak_ptr
+
+    if (auto temp_shared = p1.lock())    // 尝试提升为 shared_ptr
+    { 
+        // 资源存在时安全访问
+        std::cout &lt;&lt; *temp_shared;
+    }
+    else
+    {
+        std::cout &lt;&lt; &quot;资源已释放&quot;;
+    }
+    return 0;
+}
+</code></pre><p>使用 <code>std::weak_ptr</code> 就能解决前面提到的循环引用的问题，方法很简单，只要让 <code>Son</code> 或者 <code>Father</code> 包含的 <code>std::shared_ptr</code> 任意一方改成 <code>std::weak_ptr</code> 就可以了。</p>
+<pre><code>struct Son;
+struct Father
+{
+    std::shared_ptr&lt;Son&gt; son;
+};
+
+struct Son
+{
+    std::weak_ptr&lt;Father&gt; father;
+};
+
+int main()
+{
+    auto father = std::make_shared&lt;Father&gt;();
+    auto son = std::make_shared&lt;Son&gt;();
+
+    father-&gt;son = son;
+    son-&gt;father = father;
+
+    return 0;
+}
+</code></pre><p>该部分代码区别于<code>std::shared_ptr</code>的那部分代码，不会有内存泄漏问题。原因是：</p>
+<ul>
+<li><code>main</code> 函数第1、2行分别创建 <code>father</code> 和 <code>son</code>， 两个对象的强引用计数和弱引用计数都是 <code>1</code>（弱引用计数指控制块内部计数,<code>std::shared_ptr</code> 存活时它初始为 1）。</li>
+<li><code>father-&gt;son = son</code>，<code>father</code> 对象的 <code>son</code> 成员（<code>std::shared_ptr</code>）指向 <code>son</code> 对象，<code>son</code> 的强引用计数加1，变为2。</li>
+<li><code>son-&gt;father = father</code>，<code>son</code> 对象的 <code>father</code> 成员（<code>std::weak_ptr</code>）指向 <code>father</code> 对象，<code>father</code> 的强引用计数不变依然为1，而弱引用计数加1，变为2。</li>
+<li><code>main</code> 函数结束，son变量销毁，此时强引用计数减1，但仍然被 <code>father-&gt;son</code> 持有，不会被销毁。</li>
+<li><code>father</code> 对象销毁，此时强引用计数减1，变为0，对象被销毁。</li>
+<li>father对象销毁触发连锁反应，成员<code>son</code> 对象的强引用计数减1，变为0，对象被销毁。两个对象都被完全销毁。</li>
+</ul>
+<p><strong>最佳实践</strong></p>
+<ol>
+<li>​始终通过 <code>lock()</code> 访问资源，避免使用 <code>expired()</code> 单独判断有效性，对返回的 <code>std::shared_ptr</code> 判空后再操作。</li>
+<li>​优先使用 <code>std::make_shared</code>，避免裸指针初始化导致的分离内存分配。</li>
+<li>避免跨线程传递 <code>std::weak_ptr</code> 的时效性假设，即使 <code>lock()</code> 成功，资源可能在后续代码中失效，需设计重试机制。</li>
+<li><p>限制生命周期</p>
+<pre><code> {
+     // 确保 shared 存活期间使用 weak
+     auto shared = std::make_shared&lt;Resource&gt;();
+     std::weak_ptr&lt;Resource&gt; weak(shared);
+     // todo: 使用 weak 访问资源
+ }
+ // todo: 其他操作， shared 析构后，weak 自动失效
+</code></pre></li>
+</ol>
+<h3 id="-">进阶使用</h3>
+<h4 id="-">创建方法</h4>
+<p>在上面 <code>std::unique_ptr</code> 和 <code>std::shared_ptr</code> 的创建方法讲述中，我们总是提到一个推荐使用的创建方法，如下所示：</p>
+<pre><code>std::unique_ptr&lt;int&gt; p1(new int(5));
+std::unique_ptr&lt;int&gt; p2 = std::make_unique&lt;int&gt;(5); // 推荐使用
+
+std::shared_ptr&lt;int&gt; p1(new int(1));
+std::shared_ptr&lt;int&gt; p2 = std::make_shared&lt;int&gt;(1); // 推荐使用
+</code></pre><p>需要注意的是，除非有极其特殊的原因，否则应该优先使用 <code>std::make_unique</code> 和 <code>std::make_shared</code>，假设你有这样一个函数调用：</p>
+<pre><code>func(std::unique_ptr&lt;int&gt;(new int(5)), may_throw_exception());
+// 或者
+func(std::shared_ptr&lt;int&gt;(new int(5)), may_throw_exception());
+</code></pre><p>C++ 标准中，函数参数的求值顺序是不确定的（C++17 之前是未指定的）。可能的执行顺序是：</p>
+<ol>
+<li><code>new int(5)</code>（分配内存）</li>
+<li><code>may_throw_exception()</code>（抛出异常）</li>
+<li>构造 <code>std::unique_ptr</code> 或者 <code>std::shared_ptr</code>（接管内存）</li>
+</ol>
+<p>如果第 2 步抛出了异常，那么第 1 步分配的内存就永远无法被释放，造成了内存泄漏。而 <code>std::make_unique</code> 和 <code>std::make_shared</code> 将内存分配和对象构造封装在了一个函数内部，确保了这两步的原子性，无论后续是否发生异常，内存都已经被智能指针安全托管。</p>
+<h4 id="-deleter-">自定义删除器（Deleter）</h4>
+<p><code>std::unique_ptr</code> 和 <code>std::shared_ptr</code> 都支持自定义删除器，用于在智能指针析构时执行自定义操作，主要用于管理非 <code>new/delete</code> 分配的资源，包括文件、套接字、句柄关闭、三方库资源释放、条件性释放等等。</p>
+<pre><code>// 函数指针方式
+void deleter1(int* p) { delete p; }
+std::unique_ptr&lt;int, decltype(&amp;deleter1)&gt; ptr1(new int(5), deleter1);
+
+// 可调用对象方式（lambda）
+auto deleter2 = [](int* p) { delete p; };
+std::unique_ptr&lt;int, decltype(deleter2)&gt; ptr2(new int(5), deleter2);
+
+// 函数指针方式
+void deleter1(int* p) { delete p; }
+std::shared_ptr&lt;int&gt; ptr1(new int(5), deleter1);
+
+// 可调用对象方式（lambda）
+auto deleter2 = [](int* p) { delete p; };
+std::shared_ptr&lt;int&gt; ptr2(new int(5), deleter2);
+</code></pre><ol>
+<li>从代码可以看出两者的自定义删除器的使用方式是不同的。<code>std::shared_ptr</code> 的删除器类型不是模板参数，而 <code>std::unique_ptr</code> 是模板参数。当然他们都拥有自己的默认删除器。</li>
+<li><code>std::unique_ptr</code> 的删除器是类型的一部分，零开销，类型安全。<code>std::shared_ptr</code> 的删除器不是类型的一部分，灵活但稍慢。</li>
+<li>都用 <code>new</code> 构造，<code>std::make_*</code> 不支持删除器</li>
+<li>强烈建议删除器不要抛异常（析构过程中抛异常会导致 <code>std::terminate()</code>）。</li>
+</ol>
+<h4 id="-">引用计数</h4>
+<p>引用计数分为<strong>强引用计数</strong>和<strong>弱引用计数</strong>，它们不属于任何特定的 <code>std::shared_ptr</code> 或 <code>std::weak_ptr</code> 本身，它们属于控制块（Control Block）。<code>std::shared_ptr</code> 或 <code>std::weak_ptr</code> 只是持有指向控制块的指针。控制块是动态分配的独立对象，由所有相关的多个智能指针共享。</p>
+<p><img src="..\images\83492f988fe4442485d410be6337301e.png" alt=""></p>
+<p><code>std::shared_ptr</code> 存储指针（对象指针 + 控制块指针），<code>std::weak_ptr</code> 存储控制块指针（不存储对象指针）。控制块的生命周期由强引用计数和弱引用计数共同决定（即当强引用计数和弱引用计数都为 0 时，控制块被销毁，谨防控制块内存泄漏）。如下代码所示：</p>
+<pre><code>class Data
+{
+public:
+    Data()
+    {
+        std::cout &lt;&lt; &quot;Data created&quot; &lt;&lt; std::endl;
+    }
+
+    ~Data()
+    {
+        std::cout &lt;&lt; &quot;Data destroyed&quot; &lt;&lt; std::endl;
+    }
+};
+
+int main()
+{
+    std::cout &lt;&lt; &quot;=== 步骤 1: 创建 shared_ptr ===&quot; &lt;&lt; std::endl;
+    auto sp = std::make_shared&lt;Data&gt;();
+    // strong_count = 1, weak_count = 1（控制块自身）
+
+    std::cout &lt;&lt; &quot;\n=== 步骤 2: 创建 weak_ptr ===&quot; &lt;&lt; std::endl;
+    std::weak_ptr&lt;Data&gt; wp = sp;
+    // strong_count = 1, weak_count = 2（控制块 + wp）
+
+    std::cout &lt;&lt; &quot;\n=== 步骤 3: 销毁 shared_ptr ===&quot; &lt;&lt; std::endl;
+    sp.reset();
+    // 手动 reset(),strong_count = 0 → 对象销毁
+    // weak_count = 2（控制块仍然存在）
+    std::cout &lt;&lt; &quot;wp.expired(): &quot; &lt;&lt; wp.expired() &lt;&lt; std::endl;  // 1
+
+    std::cout &lt;&lt; &quot;\n=== 步骤 4: 销毁 weak_ptr ===&quot; &lt;&lt; std::endl;
+    wp.reset();
+    // 手动 reset(),weak_count = 1（只剩控制块自身）
+
+    std::cout &lt;&lt; &quot;\n=== 步骤 5: 程序结束 ===&quot; &lt;&lt; std::endl;
+    // weak_count = 0 → 控制块销毁
+
+    return 0;
+}
+</code></pre><h3 id="-">总结</h3>
+<ol>
+<li><p>如果程序要使用多个指向同一个对象的指针，应选择 <code>std::shared_ptr</code>。这样的情况包括:</p>
+<ul>
+<li>有一个指针数组，并使用一些辅助指针来标示特定的元素，如最大的元素和最小的元素；</li>
+<li>两个对象都包含指向第三个对象的指针；</li>
+<li>STL 容器包含指针。很多 STL 算法都支持复制和赋值操作，这些操作可用于 <code>std::shared_ptr</code>，但不能用于 <code>std::unique_ptr</code>（编译器发出 warning 甚至 error）和 <code>std::auto_ptr</code>（行为不确定）。</li>
+</ul>
+</li>
+<li><p>如果程序不需要多个指向同一个对象的指针，则可使用 <code>std::unique_ptr</code>。如果函数使用 <code>new</code> 分配内存，并返还指向该内存的指针，将其返回类型声明为 <code>std::unique_ptr</code> 是不错的选择。这样，所有权转让给接受返回值的 <code>std::unique_ptr</code>，而该智能指针将负责调用 <code>delete</code>。</p>
+</li>
+<li>如果使用 <code>std::shared_ptr</code> 发生了循环引用，就需要使用到 <code>std::weak_ptr</code>。将 <code>std::shared_ptr</code> 任意一方改成 <code>std::weak_ptr</code> 就可以。</li>
+</ol>
 <h1 id="-">进程与线程</h1>
 <h2 id="-">概念</h2>
 <p><strong>线程是CPU调度的基本单位，进程是资源分配的基本单位</strong>‌，两者在操作系统管理中形成包含关系并具有显著差异。</p>
@@ -4741,7 +5283,7 @@ int main()
 </ul>
 <p><strong>在Qt中创建线程</strong></p>
 <ol>
-<li>子线程继承 <code>QThread</code>，然后重写 <code>run()</code> 函数来实现线程逻辑，并在外层调用<code>start()</code> 启动执行。</li>
+<li>子线程继承 <code>QThread</code>，然后重写 <code>run()</code> 函数来实现线程逻辑，并在外层调用 <code>start()</code> 启动执行。</li>
 <li>使用 <code>moveToThread()</code>，任务类 <code>Task</code> 需要继承 <code>QObject</code>，然后写一个执行任务的函数，创建一个 <code>QThread</code> 线程，然后调用 <code>moveToThread()</code> 将对象移动到创建的子线程对象中，然后启动执行。</li>
 <li>使用 <code>QtConcurrent</code>，<code>QtConcurrent</code> 是 Qt 提供的一个高级并发编程模块，属于 <code>QtConcurrent</code> 命名空间，旨在简化多线程任务的执行。它支持并行执行算法（如 <code>map</code>、<code>filter</code>、<code>reduce</code>），还支持异步任务运行和结果管理，不需要显式管理 <code>QThread</code>，以下着重介绍此方法。</li>
 </ol>
@@ -6320,7 +6862,7 @@ void ThreadB()
 }
 </code></pre><h1 id="-">模板</h1>
 <h2 id="-">模板的概念</h2>
-<p>模板是一种参数化多态性的工具，可以为逻辑功能相同而类型不同的程序提供代码共享的机制。由于 C++ 程序结构的主要构件是类和函数，所以在 C++ 中，模板被分为函数模板和类模板。模板并非一个实实在在的函数或类，仅仅是函数或类的描述，模板运算对象的类型不是实际的数据类型，而是一种参数化的类型（又称为类属类型）。带类属参数的函数叫做函数模板，带类属参数的类叫做类模板。</p>
+<p>模板是一种参数化多态性的工具，可以为逻辑功能相同而类型不同的程序提供代码共享的机制。由于 C++ 程序结构的主要构件是类和函数，所以在 C++ 中，模板被分为函数模板和类模板。模板并非一个实实在在的函数或类，仅仅是函数或类的描述，模板运算对象的类型不是实际的数据类型，而是一种参数化的类型（又称为类属类型）。带类属参数的函数叫做<strong>函数模板</strong>，带类属参数的类叫做<strong>类模板</strong>。</p>
 <p><img src="..\images\d09d65c6e8e30f27263565344f335b4e.png" alt=""></p>
 <h3 id="-">函数模板</h3>
 <pre><code>template&lt;typename T1,typename T2,...&gt;
@@ -6353,32 +6895,42 @@ public:
     T num;
 };
 </code></pre><h3 id="-">模板参数</h3>
-<p>模板参数分为类型形参和非类型形参</p>
-<ul>
-<li>类型模板参数：模板参数列表中，跟在 <code>class</code> 或 <code>typename</code> 后的参数</li>
-<li>非类型模板参数：参数列表中，可当作常量使用。不能为浮点数，类对象和字符串</li>
-</ul>
+<p>模板参数分为<strong>类型模板参数</strong>和<strong>非类型模板参数</strong>。</p>
+<ol>
+<li>类型模板参数是最常用的模板参数，使用关键字 <code>class</code> 或 <code>typename</code> 声明。代表一个未知的类型，在模板实例化时被具体的类型（如 <code>int</code>、<code>std::string</code>、自定义类）替换。用于实现泛型容器（如 <code>std::vector&lt;T&gt;</code>）、泛型算法等。注意：<code>class</code> 和 <code>typename</code> 在这里完全等价，只是历史习惯不同。</li>
+<li>非类型模板参数代表一个具体的值，而不是类型。这个值必须是编译期常量，将常量值作为模板参数，用于编译期计算、数组大小、编译期策略配置等。C++20 前后差异大，但基本原则是必须是整型（如 <code>int</code>、<code>char</code>、<code>size_t</code>）、枚举、指针/引用（C++20前）或字面量类（C++20后）。</li>
+</ol>
 <pre><code>template&lt;typename T, int N = 10&gt;
-void myfunc(T tNum1)
+void fun(T t)
 {
-    cout &lt;&lt; tNum1 + N &lt;&lt; endl;
+    std::cout &lt;&lt; t + N &lt;&lt; std::endl;
 }
-</code></pre><h2 id="-">模板的实例化</h2>
-<p>模板的实例化指函数模板（类模板）生成模板函数（模板类）的过程。对于函数模板而言，模板实例化之后，会生成一个真正的函数。而类模板经过实例化之后，只是完成了类的定义，模板类的成员函数需要到调用时才会被初始化。模板的实例化分为隐式实例化和显示实例化。</p>
+</code></pre><p>如上代码所示，<code>T</code> 是一个类型模板参数，实例化时由用户指定具体的类型。<code>N</code> 是一个非类型模板参数，是一个 <code>int</code> 型的编译期常量，默认值为 <code>10</code>。非类型模板参数可以有默认值，也可以没有默认值，规则跟函数参数默认值相同。如果没有默认值，在实例化模板时，你必须为没有默认值的非类型参数提供一个编译期常量实参。</p>
+<h2 id="-">模板的实例化</h2>
+<p>模板的实例化指函数模板（类模板）生成模板函数（模板类）的过程。</p>
+<ol>
+<li>对于函数模板而言，模板实例化之后，会生成一个真正的函数（编译器会根据实参类型生成具体函数，包含函数体代码）。</li>
+<li>对于类模板而言，实例化对象只是完成了类的定义（包括：确定类大小，确定成员偏移量，确定虚函数表（若有）），但成员函数不会立即生成，需要等到每个函数被调用时才会生成相应的成员函数代码。</li>
+</ol>
+<p>模板的实例化分为<strong>隐式实例化</strong>和<strong>显式实例化</strong>。</p>
 <h3 id="-">隐式实例化</h3>
-<p>这是相对于模板显示实例化而言。在使用模板函数和模板类时，不存在指定类型的模板函数和模板类的实体时，由编译器根据指定类型参数隐式生成模板函数或者模板类的实体称之为模板的隐式实例化。</p>
+<p>这是相对于模板显式实例化而言。在使用模板函数和模板类时，不存在指定类型的模板函数和模板类的实体时，由编译器根据指定类型参数隐式生成模板函数或者模板类的实体称之为模板的隐式实例化。</p>
 <h4 id="-">函数模板隐式实例化</h4>
-<p>函数模板隐式实例化指的是在发生函数调用的时候，如果没有发现相匹配的函数存在，编译器就会寻找同名函数模板，如果可以成功进行参数类型推演，就对函数模板进行实例化</p>
+<p>函数模板隐式实例化指的是在发生函数调用的时候，如果没有发现相匹配的函数存在，编译器就会寻找同名函数模板，如果可以成功进行参数类型推演，就对函数模板进行实例化。</p>
 <pre><code>template &lt;typename T&gt;
 T Add(T a, T b)
 {
     return a + b;
 }
 
-int c = Add(1, 3);
-int d = Add&lt;int&gt;(1, 3);
-</code></pre><h4 id="-">类模板隐式实例化</h4>
-<p>类模板隐式实例化指的是在使用模板类时才将模板实例化</p>
+int main()
+{
+    int c = Add(1, 3);  // 函数实例化，此时生成了函数体代码
+    int d = Add&lt;int&gt;(1, 3);
+}
+</code></pre><p>无论是 <code>Add(1, 3)</code> 还是 <code>Add&lt;int&gt;(1, 3)</code>，它们都没有使用显式实例化语法（<code>template ...</code> 声明），编译器都是在使用自动生成的函数实体。所以从&quot;实例化方式&quot;来看，两者完全一样，都属于隐式实例化。但两者的模板参数推导方式不同，前者叫做<strong>隐式调用（隐式类型推导）</strong>，编译器根据实参 <code>1</code> 和 <code>3</code> 都是 <code>int</code>，自动推导出 <code>T = int</code>。后者叫做<strong>显式调用（显式指定类型）</strong>，程序员用 <code>&lt;int&gt;</code> 明确告诉编译器 <code>T = int</code>，编译器不再自动推导。</p>
+<h4 id="-">类模板隐式实例化</h4>
+<p>类模板隐式实例化指的是在使用模板类时才将模板实例化。</p>
 <pre><code>template&lt;typename T&gt;
 class A
 {
@@ -6390,275 +6942,323 @@ public:
 
     void print()
     {
-        cout &lt;&lt; &quot;A::num:&quot; &lt;&lt; num &lt;&lt; endl;
+        std::cout &lt;&lt; &quot;A::num:&quot; &lt;&lt; num &lt;&lt;std::endl;
     }
 
     T num;
 };
 
-A&lt;int&gt; a(5);
-a.print();
-</code></pre><h3 id="-">显示实例化</h3>
-<p>显示实例化也称为外部实例化。在不发生函数调用的时候讲函数模板实例化，或者在不适用类模板的时候将类模板实例化称之为模板显示实例化。</p>
-<h4 id="-">函数模板显示实例化</h4>
-<p>对于函数模板而言，不管是否发生函数调用，都可以通过显示实例化声明将函数模板实例化，格式为：</p>
-<pre><code>template [函数返回类型] [函数模板名]&lt;实际类型列表&gt;（函数参数列表）
+int main()
+{
+    A&lt;int&gt; a(10); // 第一步：类实例化，此时只生成了类定义
+    a.print(); // 第二步：成员函数调用，此时才生成了成员函数代码
+
+    // A b(5); // C++ 17之后引入CTAD新特性可以使用，此标准之前会报错
+    // b.print(); 
+
+    return 0;
+}
+</code></pre><p>在C++ 17之前，类模板的隐式实例化，只支持显式调用（显式指定类型），即需要程序员手动指定类型参数，如上述代码中的 <code>A&lt;int&gt; a(10)</code>。不支持隐式调用（隐式类型推导），即自动推导类型参数，如上述代码中的 <code>A b(5)</code>，程序编译时会报错。但在C++ 17之后，引入了一个新特性（CTAD），使得代码能够正常运行，详细解释本文后续章节会再做介绍。</p>
+<h3 id="-">显式实例化</h3>
+<p>显式实例化强制生成模板代码，在不发生函数调用的时候将函数模板实例化，或者在不使用类模板的时候将类模板实例化。</p>
+<h4 id="-">函数模板显式实例化</h4>
+<p>对于函数模板而言，不管是否发生函数调用，都可以通过显式实例化声明将函数模板实例化，格式为：</p>
+<pre><code>template [函数返回类型] [函数模板名]&lt;实际类型列表&gt;(函数参数列表)
 如：template void func&lt;int&gt;(const int&amp;);
-</code></pre><h4 id="-">类模板显示实例化</h4>
-<p>对于类模板而言，不管是否生成一个模板类的对象，都可以直接通过显示实例化声明将类模板实例化，格式为：</p>
+</code></pre><h4 id="-">类模板显式实例化</h4>
+<p>对于类模板而言，不管是否生成一个模板类的对象，都可以直接通过显式实例化声明将类模板实例化，格式为：</p>
 <pre><code>template class [类模板名]&lt;实际类型列表&gt;
-如：template class theclass&lt;int&gt;;
-</code></pre><h3 id="-">模板申明</h3>
-<p>为了防止在多个.cpp文件中都实例化相同的类模板，所以在C++11提出了显示实例化，来避免生成多个相同显示实例化手段的实例化定义：</p>
-<p>这种实例化定义只需要在任意一个 .cpp 文件写就可以</p>
-<pre><code>template A&lt;float&gt;;    编译器遇到这段代码就直接实例化出来一个 A&lt;float&gt;
-</code></pre><p>显示实例化手段的实例化声明</p>
-<pre><code>extern template A&lt;float&gt;; 其他所有.cpp文件都这么写
-</code></pre><ul>
-<li><code>extern</code> 作用：不会在本文件中生成一个 <code>extern</code> 后边所表示的模板的实例化版本代码</li>
-<li><code>extern</code> 目的：告诉编译器，在其他的源文件（.cpp）中已经有了一个该模板的实例化版本</li>
+如：template class Test&lt;int&gt;;
+</code></pre><h3 id="-">外部实例化</h3>
+<p>为了防止在多个源文件（.cpp）文件中都显式实例化相同的函数模板和类模板，引发重复定义错误，C++11 提出了<strong>外部实例化</strong>，用来避免这一情况的发生。外部实例化只需要在任意一个源文件（.cpp）文件里显式实例化一次，而在其他源文件（.cpp）文件中使用 <code>extern template ...</code> 来声明，告诉编译器不在此次生成代码，去别的地方查找。</p>
+<pre><code>template class A&lt;float&gt;;    // 某一个.cpp文件写，编译器遇到这段代码就直接实例化出来一个A&lt;float&gt;
+extern template class A&lt;float&gt;; // 其他所有.cpp文件都这么写，去别处找定义代码
+</code></pre><p>使用外部实例化的好处有：</p>
+<ol>
+<li>减少编译时间：避免在多个 .cpp 中重复实例化同一模板类型。</li>
+<li>减少二进制体积：同一模板类型的代码只在 .obj 中出现一次。</li>
+<li>隐藏模板实现：配合显式实例化，将模板定义和实现分离到 .cpp。</li>
+<li>预编译常用类型：在库中预生成 <code>std::vector&lt;int&gt;</code>、<code>std::string</code> 等常用模板。</li>
+</ol>
+<p><code>extern</code> 关键字在这里的含义和普通函数/变量的 <code>extern</code> 一致：</p>
+<ul>
+<li>作用：不会在本文件中生成一个 <code>extern</code> 后边所表示的模板的实例化版本代码。</li>
+<li>目的：告诉编译器，在其他的源文件（.cpp）中已经有了一个该模板的实例化版本，不要重复生成。</li>
 </ul>
+<p><strong>注意：外部实例化声明必须配合某处的显式实例化定义，否则链接时会报&quot;未找到符号&quot;错误。<code>extern template</code> 是 C++11 引入的特性，C++98/03 不支持。</strong></p>
+<h3 id="-">实例化方式的优缺点</h3>
+<p>隐式实例化虽然使用方便，但在大型项目中会带来一系列不容忽视的问题：</p>
+<ol>
+<li>编译时间膨胀，由于模板的定义通常都在头文件里，每个包含了该头文件的 .cpp 文件（翻译单元），只要使用了这个模板，编译器就会各自独立地生成一份该类型的完整代码。如果有 50 个 .cpp 文件都用了 <code>std::vector&lt;int&gt;</code>，编译器就会重复生成 50 次几乎完全相同的机器码。这不仅让编译变慢，链接器还需要花大量时间去剔除这些冗余的重复定义（ODR 合并），导致链接时间也显著增加。</li>
+<li>二进制体积可能增大，虽然链接器会做合并，但编译器在生成和优化时，是分模块（每个 .obj 文件）独立进行的，编译器无法跨 .obj 文件进行内联或深度优化。这种“各自为政”的编译方式，加上重复的调试信息，最终可能导致最终生成的可执行文件或库的体积比预期要大。</li>
+<li>无法将模板实现封装在 .cpp 中，隐式实例化要求模板的完整定义（包括所有成员函数的实现）在实例化时必须可见，这就迫使你把所有实现细节都写在头文件里。这不仅暴露了商业核心算法的源码，也增加了模块间的编译依赖。只要修改了模板的一行实现代码，所有包含它的 .cpp 文件都需要重新编译，这在大型项目中代价极高。</li>
+<li>难以控制错误信息的触发位置，你在使用一个复杂的库（如Boost）时，如果隐式实例化了一个类型，而该类型不支持模板内部的某个操作，错误信息会在你调用该操作的地方才被触发，而不是在类实例化的地方。这会导致编译器输出长达数页的模板堆栈错误，错误位置往往深埋在库的实现细节里，对于开发者来说非常不友好，难以定位自己代码的问题。</li>
+<li>静态成员初始化时机复杂，如果类模板有静态成员变量，隐式实例化会导致静态成员的定义和初始化行为变得不那么直观，容易在不注意时导致链接错误（未解析的外部符号），因为静态成员的定义通常需要放在 .cpp 中，但模板代码又放在 .h 中，两者存在矛盾。</li>
+</ol>
+<p>总结来说，隐式实例化最大的“缺点”，就是它把“何时、何地生成代码”的主动权完全交给了编译器，这种“按需生成、随处生成”的模式，在大规模工程中会导致严重的编译性能瓶颈和代码膨胀。所以，在实际工程中，标准的做法通常是“默认用隐式，瓶颈用显式”：平时开发用隐式实例化保持灵活性；当发现某个模板类型被广泛使用、导致编译变慢时，就用 <code>extern template</code>（外部实例化声明）配合 .cpp 里的显式实例化来优化。</p>
 <h2 id="-">模板的使用</h2>
-<p>对函数模板的使用而言，分为两种调用方式，一种是显示模板实参调用（显示调用），一种是隐式模板实参调用（隐式调用）。对于类模板的使用而言，没有隐式模板实参和显式模板实参使用的说法，因为类模板的使用必须显示指明模板实参。</p>
+<ol>
+<li>对函数模板的使用而言，分为两种调用方式，一种是显式模板实参调用（显式调用），一种是隐式模板实参调用（隐式调用）。</li>
+<li>对于类模板的使用而言，在 C++17 之前，没有隐式模板实参调用和显式模板实参调用的说法，因为类模板的使用必须显式指明模板实参。但在 C++17 之后，引入了一个新特性（CTAD），一定程度上打破了&quot;类模板必须显式指定&quot;的规则，新特性后续只要求必须确定类模板的类型，但编译器可以帮你推导。</li>
+</ol>
 <h3 id="-">隐式模板实参调用</h3>
-<p>在发生函数模板的调用时，不显示给出模板参数而经过参数推演，称之为函数模板的隐式模板实参调用（隐式调用）。如：</p>
+<p>在发生函数模板的调用时，不显式给出模板参数而经过参数推演，称之为函数模板的隐式模板实参调用（隐式调用）。如：</p>
 <pre><code>template &lt;typename T&gt; 
 void func(T t) 
 {
     cout &lt;&lt; t &lt;&lt; endl;
 }
+
 func(5);//隐式模板实参调用
-</code></pre><h3 id="-">显示模板实参调用</h3>
-<p>在发生函数模板的调用时，显示给出模板参数而不需要经过参数推演，称之为函数模板的显示模板实参调用（显示调用），显示模板实参调用在参数推演不成功的情况下是有必要的</p>
+</code></pre><h3 id="-">显式模板实参调用</h3>
+<p>在发生函数模板的调用时，显式给出模板参数而不需要经过参数推演，称之为函数模板的显式模板实参调用（显式调用），显式模板实参调用在参数推演不成功的情况下是有必要的。</p>
 <pre><code>template &lt;typename T&gt;
 T Max(const T&amp; t1, const T&amp; t2)
 {
     return (t1 &gt; t2) ? t1 : t2;
 }
 
-cout &lt;&lt; Max&lt;double&gt;(1.0, 2.0); // 显示模板实参调用
-int i = 5;
-//cout&lt;&lt;Max(i,&#39;a&#39;)&lt;&lt;endl; //无法通过编译
-cout &lt;&lt; Max&lt;int&gt;(i, &#39;a&#39;) &lt;&lt; endl; //显示调用，通过编译
-</code></pre><h2 id="-">模板的特化</h2>
-<p>模板特化（template specialization）不同于模板的实例化，模板参数在某种特定类型下的具体实现称为模板特化。模板特化有时也称之为模板的具体化，分别有函数模板特化和类模板特化，特化又分为全特化与偏特化(部分特化)。</p>
-<p>模板偏特化（Template Partitial Specialization）是模板特化的一种特殊情况，指显示指定部分模板参数而非全部模板参数，或者指定模板参数的部分特性分而非全部特性，也称为模板部分特化。与模板偏特化相对的是模板全特化，指对所有模板参数进行特化。模板全特化与模板偏特化共同组成模板特化。</p>
-<p>模板偏特化主要分为两种：</p>
+std::cout &lt;&lt; Max&lt;double&gt;(1.0, 2.0)&lt;&lt; std::endl; // 显式模板实参调用
+
+// std::cout&lt;&lt;Max(5, &#39;a&#39;)&lt;&lt; std::endl; // 无法通过编译，入参两种不同类型，Max自动推导失败
+std::cout &lt;&lt; Max&lt;int&gt;(5, &#39;a&#39;) &lt;&lt; std::endl; //显式调用，强制指定int类型，通过编译
+</code></pre><h3 id="c-17-ctad-">C++17 的类模板实参推导新特性（CTAD）</h3>
+<p>上面讲过在 C++17 之前，类模板的使用必须显式指明模板实参，不能隐式推导。还是看之前的代码，将编译器改为使用C++17，发现可以成功编译。这就是 CTAD 的功劳，它一定程度上打破了&quot;类模板必须显式指定&quot;的规则。但仍要注意：</p>
 <ol>
-<li>是指对部分模板参数进行特化</li>
-<li>是对模板参数特性进行特化，包括将模板参数特化为指针、引用或是另外一个模板类</li>
+<li>CTAD 是 C++17 才有的特性，不是所有编译器都支持（需要 C++17 以上）。</li>
+<li>CTAD 依赖构造函数实参推导，如果没有构造函数或构造函数无法推导，仍然必须显式指定。</li>
+<li>CTAD 主要用于简化代码，底层仍然是确定了具体类型 <code>A&lt;int&gt;</code> 并按隐式实例化规则生成代码。</li>
 </ol>
+<p>所以，即使有 CTAD，严格来说类模板仍然需要确定具体类型，只是编译器帮忙推导了而已。如下代码所示：</p>
+<pre><code>template&lt;typename T&gt;
+class A
+{
+public:
+    A(T a)
+    {
+        num = a;
+    }
+
+    void print()
+    {
+        std::cout &lt;&lt; &quot;A::num:&quot; &lt;&lt; num &lt;&lt;std::endl;
+    }
+
+    T num;
+};
+
+int main()
+{
+    A a(5); // C++ 17之后引入CTAD新特性可以使用，标准之前会报错
+    // A b;    // 没有构造函数入参，无法推导模板参数
+    return 0;
+}
+</code></pre><h2 id="-">模板的特化</h2>
+<p>模板特化不同于模板的实例化，模板参数在某种特定类型下的具体实现称为模板特化（显式具体化）。模板特化有时也称之为模板的具体化，分别有<strong>函数模板特化</strong>和<strong>类模板特化</strong>，特化又分为<strong>全特化</strong>与<strong>偏特化(部分特化)</strong>。</p>
+<p>模板偏特化是模板特化的一种特殊情况，指显式指定部分模板参数而非全部模板参数，或者指定模板参数的部分特性而非全部特性，也称为模板部分特化。与模板偏特化相对的是模板全特化，指对所有模板参数进行特化。模板全特化与模板偏特化共同组成模板特化。</p>
 <h3 id="-">函数模板特化</h3>
 <h4 id="-">函数模板全特化</h4>
-<p>函数模板特化是在一个统一的函数模板不能在所有类型实例下正常工作时，需要定义类型参数在实例化为特定类型时函数模板的特定实现版本</p>
+<p>函数模板特化是在通用的函数模板无法适配所有类型时，为特定类型提供定制实现。</p>
 <pre><code>#include &lt;iostream&gt;
 using namespace std;
 
-template&lt;typename T&gt; T Max(T t1,T t2)
+class Test
 {
-    return (t1&gt;t2)?t1:t2;
+public:
+    Test(int a) { num = a; }
+    int num;
+};
+
+
+// 函数模板Max，用于比较两个类型参数T的大小并返回较大的那个
+template&lt;typename T&gt; T Max(T t1, T t2)
+{
+    return (t1 &gt; t2) ? t1 : t2;
 }
 
-typedef const char* CCP;
-template&lt;&gt; CCP Max&lt;CCP&gt;(CCP s1,CCP s2)
+// 函数模板Max全特化，用于比较两个自定义对象里数字的大小并返回较大的那个
+template&lt;&gt; Test Max&lt;Test&gt;(Test s1, Test s2)
 {
-    return (strcmp(s1,s2)&gt;0)?s1:s2;
+    return (s1.num &gt; s2.num) ? s1 : s2;
 }
 
 int main()
 {
-//调用实例：int Max&lt;int&gt;(int,int)
-    int i=Max(10,5);
-    //调用显示特化：const char* Max&lt;const char*&gt;(const char*,const char*)
-    const char* p=Max&lt;const char*&gt;(&quot;very&quot;,&quot;good&quot;);
-    cout&lt;&lt;&quot;i:&quot;&lt;&lt;i&lt;&lt;endl;
-    cout&lt;&lt;&quot;p:&quot;&lt;&lt;p&lt;&lt;endl;
+    //调用实例：int Max&lt;int&gt;(int, int)
+    int i = Max(10, 5);
+
+    // 调用显式特化：Test Max&lt;Test&gt;(Test, Test)
+    Test a(10), b(5);
+    Test test = Max&lt;Test&gt;(a, b);
+
+    cout &lt;&lt; &quot;i:&quot; &lt;&lt; i &lt;&lt; endl;
+    cout &lt;&lt; &quot;test:&quot; &lt;&lt; test.num &lt;&lt; endl;
 }
-</code></pre><p>在函数模板显示特化定义（Explicit Specialization Definition）中，显示关键字template和一对尖括号&lt;&gt;，然后是函数模板特化的定义。该定义指出了模板名、被用来特化模板的模板实参，以及函数参数表和函数体。在上面的程序中，如果不给出函数模板Max&lt; T&gt;在T为const char*时的特化版本，那么在比较两个字符串的大小时，比较的是字符串的起始地址的大小，而不是字符串的内容在字典序中先后次序。</p>
-<h4 id="-">函数重载替代函数模板特化</h4>
-<p>除了定义函数模板特化版本外，还可以直接给出模板函数在特定类型下的重载形式（普通函数）。使用函数重载可以实现函数模板特化的功能，也可以避免函数模板的特定实例的失效。例如，把上面的模板特化可以改成如下重载函数。</p>
-<pre><code>typedef const char* CCP;
-CCP Max(CCP s1, CCP s2) 
+</code></pre><p>在函数模板特化定义中，使用关键字 <code>template</code> 和一对尖括号 <code>&lt;&gt;</code>，然后是函数模板特化的定义。该定义指出了模板名、被用来特化模板的模板实参，以及函数参数表和函数体。在上面的程序中，如果不给出函数模板 <code>Max&lt;T&gt;</code> 在 <code>T</code> 为 <code>Test</code> 时的特化版本，那么在比较两个对象中成员 <code>num</code> 的大小时，会调用默认的函数模板 <code>Max&lt;T&gt;</code>，而不是特化的版本，导致报错（自定义对象不能比较大小）。</p>
+<p>另外，除了定义函数模板特化版本外，还可以直接给出模板函数在特定类型下的重载形式（普通函数）。使用函数重载可以实现函数模板特化的功能，也可以避免函数模板的特定实例的失效。例如，把上面的模板特化可以改成如下重载函数。</p>
+<pre><code>// 重载函数版本代替特化版本
+Test Max(Test s1, Test s2) 
 {
-    return (strcmp(s1, s2) &gt; 0) ? s1 : s2;
+    return (s1.num &gt; s2.num) ? s1 : s2;
 }
+
+// 调用时，去除显式指定模板参数，直接调用普通函数即可。
+Test test = Max(a, b);
 </code></pre><p>程序运行结果和使用函数模板特化相同。但是，使用普通函数重载和使用模板特化还是有不同之处，主要表现在如下三个方面： </p>
 <ol>
-<li>优先选择，如果一个非模板函数和同名函数模板同时存在，若参数类型和非模板函数完全相同，优先调用非模板函数；否则调用模板函数实例化。</li>
+<li>优先选择，如果一个非模板函数和同名模板函数同时存在，若参数类型和非模板函数完全相同，优先调用非模板函数；否则调用模板函数实例化。</li>
 <li>如果使用普通重载函数，那么不管是否发生实际的函数调用，都会在目标文件中生成该函数的二进制代码。而如果使用模板的特化版本，除非发生函数调用，否则不会在目标文件中包含特化模板函数的二进制代码。这符合函数模板的“惰性实例化”准则。</li>
 <li>如果使用普通重载函数，那么在分离编译模式下，应该在各个源文件中包含重载函数的申明，否则在某些源文件中就会使用模板函数，而不是重载函数。</li>
 </ol>
 <h4 id="-">函数模板偏特化</h4>
-<p>函数模板是不允许偏特化的，下面的声明会编译报错，“f”: 非法使用显式模板参数</p>
+<p>函数模板是不允许偏特化的，是语言设计上的有意为之，核心原因在于：函数模板已经有“重载”这个更强大、更安全的机制来实现同样的目的，引入偏特化反而会带来语法歧义和违反直觉的行为。下面的声明会编译报错，“func”: 非法使用显式模板参数。</p>
 <pre><code>template &lt;class T1, class T2&gt;
-void f(T1, T2) {}
+void func(T1, T2) {}
 
 // 偏特化模板函数（编译错误）
 template &lt;class T2&gt;
-void f&lt;int, T2&gt;() {}
+void func&lt;int, T2&gt;(int, T2) {}
 </code></pre><p>但函数允许重载，声明另一个函数模板即可替代偏特化的需要</p>
 <pre><code>template &lt;class T1, class T2&gt;
-void f(T1, T2) {}
+void func(T1, T2) {}
 
-// 函数重载
+// 函数重载实现&quot;固定第一个参数&quot;的效果
 template &lt;class T2&gt;
-void f(int, T2) {}
+void func(int, T2) {}
 </code></pre><h3 id="-">类模板特化</h3>
 <h4 id="-">类模板全特化</h4>
-<p>类模板全特化类似于函数模板的全特化，即类模板参数在某种特定类型下的具体实现</p>
-<pre><code>template&lt;class T1,class T2&gt;
+<p>类模板全特化类似于函数模板的全特化，即类模板参数在某种特定类型下的具体实现。</p>
+<pre><code>template&lt;class T1, class T2&gt;
 class Test
 {
 public:
-    Test(T1 a, T2 b):_a(a),_b(b)
+    Test(T1 a, T2 b) :t1(a), t2(b)
     {
-    cout &lt;&lt; &quot;模板化&quot; &lt;&lt; endl;
+        cout &lt;&lt; &quot;模板实例化&quot; &lt;&lt; endl;
     }
 private:
-    T1 _a;
-    T2 _b;
+    T1 t1;
+    T2 t2;
 };
 
 //模板全特化
 template&lt;&gt;
-class Test&lt;int,int&gt;
+class Test&lt;int, int&gt;
 {
 public:
-    Test(int a, int b) :_a(a), _b(b)
+    Test(int a, int b) :t1(a), t2(b)
     {
-    cout &lt;&lt; &quot;模板全特化&quot; &lt;&lt; endl;
+        cout &lt;&lt; &quot;模板全特化&quot; &lt;&lt; endl;
     }
 private:
-    int _a;
-    int _b;
+    int t1;
+    int t2;
 };
+
+int main()
+{
+    Test&lt;double, double&gt; a(1.2, 3.4);
+    Test b(1, 2); //  C++17之后使用
+    return 0;
+}
 </code></pre><h4 id="-">类模板偏特化</h4>
-<p>偏特化部分模板参数</p>
-<pre><code>//模板偏特化部分模板参数
-template&lt;class T&gt;
-class Test&lt;int,T&gt;
-{
-public:
-    Test(int a, T b) :_a(a), _b(b)
-    {
-    cout &lt;&lt; &quot;模板偏特化&quot; &lt;&lt; endl;
-    }
-private:
-    int _a;
-    T _b;
-};
-</code></pre><p>偏特化模板参数特性</p>
-<pre><code>//两个参数偏特化为引用类型
-template &lt;typename T1, typename T2&gt;
-class Data &lt;T1&amp;, T2&amp;&gt;
-{
-public:
-    Data(const T1&amp; d1, const T2&amp; d2): _d1(d1), _d2(d2)
-    {
-        cout&lt;&lt;&quot;Data&lt;T1&amp;, T2&amp;&gt;&quot; &lt;&lt;endl;
-    }
-private:
-    const T1 &amp; _d1;
-    const T2 &amp; _d2;
-};
-</code></pre><h2 id="-">共存和编译机制</h2>
+<ol>
+<li><p>偏特化部分模板参数</p>
+<pre><code> // 模板偏特化部分模板参数
+ template&lt;class T&gt;
+ class Test&lt;int, T&gt;
+ {
+ public:
+     Test(int a, T b) :t1(a), t2(b)
+     {
+         cout &lt;&lt; &quot;模板偏特化部分模板参数&quot; &lt;&lt; endl;
+     }
+ private:
+     int t1;
+     T t2;
+ };
+
+ // C++17之后使用
+ Test b(1, 2);
+</code></pre></li>
+<li><p>偏特化模板参数特性，包括指针/引用、CV限定符、数组、容器（模板模板参数）、元函数（条件匹配如：<code>enable_if</code>）</p>
+<pre><code> // 两个参数偏特化为引用类型
+ template &lt;typename T1, typename T2&gt;
+ class Test &lt;T1&amp;, T2&amp;&gt;
+ {
+ public:
+     Test(const T1&amp; a, const T2&amp; b) : t1(a), t2(b)
+     {
+         cout &lt;&lt; &quot;模板偏特化为引用类型&quot; &lt;&lt; endl;
+     }
+ private:
+     const T1&amp; t1;
+     const T2&amp; t2;
+ };
+
+ // 方法1：直接使用显式调用命中偏特化
+ Test&lt;int&amp;, int&amp;&gt; b(1, 2);
+
+ // 方法2：添加 C++17 推导指引,将左值推导为左值引用类型
+ template &lt;typename T1, typename T2&gt;
+ Test(T1, T2) -&gt; Test&lt;T1&amp;, T2&amp;&gt;;
+
+ // 方法2：使用自动推导模板参数类型，C++17之前，会报错
+ Test b(1, 2);
+</code></pre></li>
+</ol>
+<h2 id="-">共存和编译机制</h2>
 <p>当函数模板和函数重载共存时，编译器会根据以下规则来确定使用哪个函数：</p>
 <ol>
 <li><strong>精确匹配</strong>：如果有一个非模板函数与调用完全匹配（参数类型和数量都相同），那么编译器会优先选择这个函数。</li>
 <li><strong>模板推导</strong>：如果没有精确匹配的非模板函数，编译器会尝试使用函数模板，并通过模板推导来确定模板参数的类型。</li>
 <li><strong>错误处理</strong>：如果模板推导失败或产生歧义，编译器会报错。</li>
 </ol>
-<h2 id="-">总结</h2>
-<ol>
-<li><p><strong>隐式实例化</strong>：在使用模板之前，编译器不生成模板的声明和定义实例。只有当使用模板时，编译器才根据模板定义生成相应类型的实例</p>
-<pre><code> int i=0, j=1;
- swap(i, j);  
- // 编译器根据参数i，j的类型隐式地生成swap&lt;int&gt;(int &amp;a, int &amp;b)的函数定义
-
- Array&lt;int&gt; arVal;
- // 编译器根据类型参数隐式地生成Array&lt;int&gt;类声明和类函数定义。
- // 根据函数的实际调用能够自动生成实例化
-</code></pre></li>
-<li><p><strong>显式实例化</strong>：当显式实例化模板时，在使用模板之前，编译器根据显式实例化指定的类型生成模板实例。如前面显示实例化（explicit instantiation）模板函数和模板类，显式实例化只需声明，不需要重新定义，编译器根据模板实现实例声明和实例定义，其格式为：</p>
-<pre><code> template typename function&lt;typename&gt;(argulist);
- template class classname&lt;typename&gt;;
-</code></pre></li>
-<li><p><strong>显示具体化</strong>：对于某些特殊类型，可能不适合模板实现，需要重新定义实现，此时可以使用显示具体化（explicite specialization），显示实例化需重新定义，其格式为：</p>
-<pre><code> template&lt;&gt; typename function&lt;typename&gt;(argu_list){...};
- template&lt;&gt; class classname&lt;typename&gt;{...};
-</code></pre></li>
-</ol>
 <h2 id="-">模板的编译</h2>
-<p>在工作中遇到一个有趣的问题，现有一个通用单例模板类如下：</p>
+<p>在工作中遇到一个有趣的问题，现有一个通用模板类如下：</p>
 <pre><code>template &lt;typename T&gt;
-class Singleton
+class Test
 {
 public:
-    static T* Get()
-    {
-        std::call_once(s_oc, [&amp;](){ s_instance = new T(); s_gc.DoNothing(); });
-        return s_instance;
-    };
-
-    static void Destroy()
-    {
-        if(s_instance != nullptr)
-        {
-            delete s_instance;
-            s_instance = nullptr;
-        }
-    };
-
-    static bool HasInstance()
-    {
-        return s_instance != nullptr;
-    };
-
-protected:
-    Singleton() {}
-    ~Singleton() {}
-
-private:
-    Singleton(const Singleton&amp;) = delete;
-    Singleton&amp; operator=(const Singleton&amp;) = delete;
-    static T* s_instance;
-    static std::once_flag s_oc;
-
-    struct GarbageCollector
-    {
-        using FunctionPointer = void(*)(void);
-        GarbageCollector(FunctionPointer function) : destructor(function) {}
-        ~GarbageCollector() { destructor(); }
-
-        // 防止编译器优化
-        inline void DoNothing() {}
-        FunctionPointer destructor;
-    };
-
-    static GarbageCollector s_gc;
+    static int s_count;   // 跨 DLL 若不导出，可能每个模块各一份
 };
-template&lt;typename T&gt; T* Singleton&lt;T&gt;::s_instance = nullptr;
-template&lt;typename T&gt; std::once_flag Singleton&lt;T&gt;::s_oc;
-template&lt;typename T&gt; typename Singleton&lt;T&gt;::GarbageCollector Singleton&lt;T&gt;::s_gc(Singleton&lt;T&gt;::Destroy);
+template &lt;typename T&gt; int Test&lt;T&gt;::s_count = 0;
+</code></pre><p>当 <code>Test</code> 类需要多个 dll 使用时，同一份模板代码在 MSVC 和 MinGW（基于 GCC）两个编译器下会出现不同的表现：</p>
+<ul>
+<li><strong>MSVC</strong>：对模板实例采用弱符号（COMDAT）处理，不显式导出时通常也能编译通过、看似正常运行。但要注意，这<strong>并不保证跨 DLL 使用的是同一个实例</strong>——由于 Windows PE 不做跨模块符号合并，模板类的 <code>static</code> 成员（乃至单例对象）很可能每个 DLL/EXE 各持有一份，从而埋下&quot;状态不唯一&quot;的隐蔽 bug。</li>
+<li><strong>MinGW/GCC</strong>：在 PE 平台默认不导出模板实例的符号，也没有 MSVC 那套宽松的弱符号容错，跨 DLL 时会直接表现为符号无法解析（链接失败），问题暴露得更早、更硬。</li>
+</ul>
+<p>可见两者的差异本质是<strong>对模板实例的默认符号可见性与导出策略不同</strong>，而非&quot;谁能识别、谁不能识别&quot;。可靠且通用的解决办法对两者是一致的：在<strong>某一个</strong> DLL 中显式实例化并用导出宏导出该实例，其余模块导入同一符号，从而保证实例唯一。</p>
+<pre><code>// .h文件（被库自身和所有使用方共同包含）
+#if defined(_WIN32)
+    #ifdef MYLIB_BUILD_DLL
+        #define MYLIB_API __declspec(dllexport)
+    #else
+        #define MYLIB_API __declspec(dllimport)
+    #endif
+#else
+    #if defined(__GNUC__) || defined(__clang__)
+        #define MYLIB_API __attribute__((visibility(&quot;default&quot;)))
+    #else
+        #define MYLIB_API
+    #endif
+#endif
 
-#define TO_BE_SINGLETON(T)\
-public:\
-    friend class Singleton&lt;T&gt;;\
-    static T* Get() { return Singleton&lt;T&gt;::Get(); }\
-    static bool HasInstance() { return Singleton&lt;T&gt;::HasInstance(); }\
-    static void Release() { Singleton&lt;T&gt;::Destroy(); }
-</code></pre><p>在其他的类需要单例时，只需要引用此头文件，并包含 <code>TO_BE_SINGLETON(...)</code> ，<code>MODULE_BASE_API</code> 为导入导出宏。</p>
-<pre><code>class MODULE_BASE_API Test
-{
-     TO_BE_SINGLETON(Test)
+// 外部实例化声明：只声明不生成代码，告诉每个包含此头文件的翻译单元
+// “Test&lt;int&gt; 的实例在别处定义，不要自行生成”。
+// 对使用方而言，此时 MYLIB_BUILD_DLL 未定义，MYLIB_API 展开为 dllimport，即导入该实例。
+extern template class MYLIB_API Test&lt;int&gt;;
 
- private:
-     RouterManager();
-     ~RouterManager();
-}
-</code></pre><p>当 <code>Test</code> 类需要多个dll使用时，通过在 MSVC 和 MinGW（基于GCC）两个编译器下运行却出现了不同的表现，MSVC 能够在多个动态库中成功识别出单例，但 MinGW 却不行，究其原因是因为两边编译器对模板的处理有差异。那么在 MinGW 中如何确保以上情况也能够识别单例呢，我们需要显示实例化模板类并导出。</p>
-<pre><code>template class MODULE_BASE_API Singleton&lt;Test&gt;;
-</code></pre><h1 id="qt-ui-">Qt UI基础</h1>
+// .cpp文件（仅库自身的某一个源文件，全程序唯一一处定义）
+// 显式实例化定义：真正生成 Test&lt;int&gt; 的实例代码与静态成员，只能有一处。
+// 编译该库时 MYLIB_BUILD_DLL 已定义，MYLIB_API 展开为 dllexport，即导出该实例。
+template class MYLIB_API Test&lt;int&gt;;
+</code></pre><h2 id="-">总结</h2>
+<ol>
+<li>C++17之前类模板的隐式实例化只支持显式调用，在C++17之后因为新特性 CTAD 的原因，底层能够利用隐式调用规则为我们自动生成代码。CTAD 让类模板的调用方式从显式变为隐式，但实例化方式始终是隐式实例化。但需注意CTAD 并非万能，是有先决条件的。</li>
+<li>模板函数是不支持偏特化的，可以使用普通重载函数代替。不论使用什么操作系统平台与编译器，为了确保模板跨DLL最终使用同一实例，请采用导入/导出宏+外部实例化（<code>extern template class</code>）+显式实例化（<code>template class</code>）的方式来达到你的目的。</li>
+</ol>
+<h1 id="qt-ui-">Qt UI基础</h1>
 <h2 id="ui-">UI渲染差别</h2>
 <p>在 Qt 框架中，<code>QWidget</code> 和 <code>QML</code> 在 CPU 和 GPU 使用方面存在显著差异，主要体现在渲染机制、性能特点和适用场景上。</p>
 <h3 id="-">渲染机制</h3>
